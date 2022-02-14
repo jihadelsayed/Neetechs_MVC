@@ -48,6 +48,7 @@
     <script>
         function getModels(data){
             let selected = data.value;
+            //$("#model").empty();
             $.ajax({
                 url:'Products/GetModels',
                 data:{'select': selected},
