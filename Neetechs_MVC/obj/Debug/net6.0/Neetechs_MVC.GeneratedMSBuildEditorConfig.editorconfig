@@ -11,7 +11,7 @@ build_property.RootNamespace = Neetechs_MVC
 build_property.ProjectDir = D:\GitHub\Neetechs_MVC\Neetechs_MVC\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = D:\GitHub\Neetechs_MVC\Neetechs_MVC
 build_property._RazorSourceGeneratorDebug = 
 
