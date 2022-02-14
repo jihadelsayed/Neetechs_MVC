@@ -70,6 +70,7 @@ namespace Neetechs_MVC.Controllers
             brands.Add(new SelectListItem("asus", "Asus"));
             brands.Add(new SelectListItem("asus", "Asus"));
             ViewBag.SelectBrand = brands;
+            //ViewData["SelectBrand"] = brands;
             return View();
         }
 

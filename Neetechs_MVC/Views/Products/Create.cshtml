@@ -26,7 +26,8 @@
                 <label asp-for="Brand" class="control-label"></label>
 @*                <input asp-for="Brand" class="form-control" />
 *@              <select id="brand" onchange="getModels(this)" asp-for="Brand"  asp-items=@ViewBag.SelectBrand class="form-control"></select>
-                <span asp-validation-for="Brand" class="text-danger"></span>
+@*<select id="brand" onchange="getModels(this)" asp-for="Brand"  asp-items=@(List<SelectListItem>)(@ViewData["SelectBrand"]) class="form-control"></select>
+*@                <span asp-validation-for="Brand" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
