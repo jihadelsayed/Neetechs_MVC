@@ -24,7 +24,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Brand" class="control-label"></label>
-                <input asp-for="Brand" class="form-control" />
+@*                <input asp-for="Brand" class="form-control" />
+*@              <select id="brand" onchange="getModels(this)" asp-for="Brand"  asp-items=@ViewBag.SelectBrand class="form-control"></select>
                 <span asp-validation-for="Brand" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,5 +45,21 @@
 </div>
 
 @section Scripts {
+    <script>
+        function getModels(data){
+            let selected = data.value;
+            $.ajax({
+                url:'Products/GetModels',
+                data:{'select': selected},
+                dataType:'json',
+                success: function(models){
+                    $.each(models,function(index,model){
+                        let option = new Option(model.text, model.value);
+                        $('#brand').append(option);
+                    })
+                }
+            })
+        }
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

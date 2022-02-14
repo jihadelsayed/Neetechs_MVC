@@ -23,9 +23,27 @@ namespace Neetechs_MVC.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Products.ToListAsync());
+ 
+           return View();
+    
         }
+        // GET: Products
+        public async Task<IActionResult> Search(string search)
+        {
+            if (string.IsNullOrEmpty(search))
+            {
+                return PartialView("_Search", await _context.Products.ToListAsync());
+            }
+            else
+            {
+                return PartialView("_Search", await _context.Products.Where(product =>
+                product.Brand.Contains(search)
+                || product.Date.ToString().Contains(search)
+                || product.Name.Contains(search)
+                ).ToListAsync());
 
+            }
+        }
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -47,6 +65,11 @@ namespace Neetechs_MVC.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+
+            List<SelectListItem> brands = new List<SelectListItem>();
+            brands.Add(new SelectListItem("asus", "Asus"));
+            brands.Add(new SelectListItem("asus", "Asus"));
+            ViewBag.SelectBrand = brands;
             return View();
         }
 
@@ -57,6 +80,7 @@ namespace Neetechs_MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Date,Brand,Price")] Product product)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(product);
@@ -149,6 +173,25 @@ namespace Neetechs_MVC.Controllers
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
+        }
+        public JsonResult GetModels(string selected)
+        {
+
+            List<SelectListItem> brands = new List<SelectListItem>();
+            if (selected == "volvo")
+            {
+                brands.Add(new SelectListItem("ddd", "ddd"));
+
+            }
+            else
+            {
+                brands.Add(new SelectListItem("sss", "sss"));
+
+            }
+            brands.Add(new SelectListItem("asus", "Asus"));
+
+            return Json(brands);
+
         }
     }
 }
