@@ -51,7 +51,7 @@
             let selected = data.value;
             //$("#model").empty();
             $.ajax({
-                url:'Products/GetModels',
+                url:'/Products/GetModels',
                 data:{'select': selected},
                 dataType:'json',
                 success: function(models){

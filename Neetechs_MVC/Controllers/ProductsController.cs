@@ -24,11 +24,11 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-           return View();
-    
+            return View();
+
         }
         // GET: MyProducts
         public async Task<IActionResult> SearchMyProducts(string search)
