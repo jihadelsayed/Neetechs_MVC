@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Neetechs_MVC.Migrations
+namespace Neetechs_MVC.Data.Migrations
 {
-    public partial class init2 : Migration
+    public partial class hh : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

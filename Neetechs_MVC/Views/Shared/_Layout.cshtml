@@ -31,9 +31,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Create">Add Product</a>
                         </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+                        <li class="nav-item">
+                            <a class="nav-link" id="weather">weather</a>
+                        </li>
+                    </ul> 
+      
                 </div>
+
+                   <form class="navbar-nav" data-ajax="true" data-ajax-method="get" 
+                    data-ajax-update="#weather" data-ajax-mode="replace" 
+                    data-ajax-url="@Url.Action("WeatherTask", "Weather")">
+                        Search weather:
+                        <input type="text" name="town"/>
+                       <input type="submit" name="Search" />
+                    </form>
+                    <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>
@@ -51,6 +63,19 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        $(document).ready( function(){
+            $.ajax({
+                type:'GET',
+                url:'/Weather/WeatherTask/',
+                success:function(data){
+                    $('#weather').html(data);
+            }
+
+        }) })
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

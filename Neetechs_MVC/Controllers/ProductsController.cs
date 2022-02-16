@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Neetechs.Context;
 using Neetechs.Model;
+using Neetechs_MVC.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Neetechs_MVC.Controllers
 {
+    
     public class ProductsController : Controller
     {
-        private readonly ProductContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ProductsController(ProductContext context)
+        public ProductsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -63,6 +65,8 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: Products/Create
+        [Authorize]
+        //[Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
 
