@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Neetechs.Model;
 using Neetechs_MVC.Data;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Neetechs_MVC.Controllers
 {
@@ -25,9 +26,36 @@ namespace Neetechs_MVC.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
- 
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
            return View();
     
+        }
+        // GET: MyProducts
+        public async Task<IActionResult> SearchMyProducts(string search)
+        {
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            if (string.IsNullOrEmpty(search))
+            {
+                if (User.IsInRole(userId))
+                {
+
+                    return PartialView("_Search", await _context.Products.ToListAsync());
+                }
+                return PartialView("_Search", await _context.Products.Where(product =>
+                    product.UserId.Contains(userId)
+                    ).ToListAsync());
+            }
+            else
+            {
+                return PartialView("_Search", await _context.Products.Where(product =>
+                    product.Brand.Contains(search)
+                    || product.Date.ToString().Contains(search)
+                    || product.UserId.Contains(userId)
+                    || product.Name.Contains(search)
+                    ).ToListAsync());
+
+            }
         }
         // GET: Products
         public async Task<IActionResult> Search(string search)
@@ -66,7 +94,7 @@ namespace Neetechs_MVC.Controllers
 
         // GET: Products/Create
         [Authorize]
-        //[Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator, SuperUser")]
         public IActionResult Create()
         {
 
@@ -88,6 +116,7 @@ namespace Neetechs_MVC.Controllers
 
             if (ModelState.IsValid)
             {
+                product.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
