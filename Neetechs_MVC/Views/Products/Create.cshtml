@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -41,15 +41,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="FileName" class="control-label"></label>
-                <input type="file" onchange="getFile(this)" asp-for="FileName" class="form-control" />
-                <span asp-validation-for="FileName" class="text-danger"></span>
+                <input type="file" onchange="getFile(this)" asp-for="FileName" name="FormFile" class="form-control" />
+                <span asp-validation-for="FormFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="File" class="control-label"></label>
 @*                <input asp-for="File" class="form-control" />
 *@                <img id="formImage" height="200"/>
-@*                <span asp-validation-for="File" class="text-danger"></span>
-*@            </div>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

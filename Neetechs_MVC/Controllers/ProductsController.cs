@@ -10,6 +10,8 @@ using Neetechs.Model;
 using Neetechs_MVC.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Neetechs_MVC.Controllers
 {
@@ -96,7 +98,6 @@ namespace Neetechs_MVC.Controllers
             brands.Add(new SelectListItem("asus", "Asus"));
             brands.Add(new SelectListItem("asus", "Asus"));
             ViewBag.SelectBrand = brands;
-            //ViewData["SelectBrand"] = brands;
             return View();
         }
 
@@ -105,15 +106,62 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Date,Brand,Price,FileName,File")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Date,Brand,Price,FormFile")] Product product)
         {
+            List<SelectListItem> brands = new List<SelectListItem>();
+            brands.Add(new SelectListItem("asus", "Asus"));
+            brands.Add(new SelectListItem("asus", "Asus"));
+            ViewBag.SelectBrand = brands;
+            //ViewData["SelectBrand"] = brands;
+
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            product.UserId = userId;
+
+            if (product.FormFile != null)
+            {
+                byte[] bytes = null;
+                var img = Image.FromStream(product.FormFile.OpenReadStream());
+                var height = img.Height;
+                var width = img.Width;
+                if (height > 200)
+                {
+                    var retio = 1;
+                    if ( height > width)
+                    {
+                        retio = height / width;
+                    }
+                    else
+                    {
+                        retio = width / height;
+                    }
+                    int newHeight = 200;
+                    int newWidth = (int)(200 * retio);
+                    string f = newWidth.GetType().Name;
+                    Bitmap resizeImage = new Bitmap(img, newWidth, newHeight);
+                    using var imageStream = new MemoryStream();
+                    resizeImage.Save(imageStream, ImageFormat.Jpeg);
+                    bytes = imageStream.ToArray();
+
+                }
+                else
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        product.FormFile.CopyTo(ms); // copy to memory stream object
+                        bytes = ms.ToArray();
+
+                    }
+                }
+                product.File = bytes;
+                product.FileName = product.FormFile.FileName;
+            }
             if (ModelState.IsValid)
             {
-                product.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+     
             return View(product);
         }
 

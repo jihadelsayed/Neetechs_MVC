@@ -7,15 +7,15 @@ namespace Neetechs.Model
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public string UserId { get; set; }
-        public DateTime AddDate = new DateTime();
-
+        public string? UserId { get; set; }
+        public DateTime? AddDate = new DateTime();
+        
         public DateTime Date { get; set; }
         public string Brand { get; set; }
         public int Price { get; set; }
 
-        public string FileName { get; set; }
-        public byte[] File { get; set; }
+        public string? FileName { get; set; }
+        public byte[]? File { get; set; }
         [NotMapped]
         public IFormFile FormFile { get; set; }
 
