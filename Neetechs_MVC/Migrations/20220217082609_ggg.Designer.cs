@@ -9,11 +9,11 @@ using Neetechs_MVC.Data;
 
 #nullable disable
 
-namespace Neetechs_MVC.Data.Migrations
+namespace Neetechs_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220216082717_hh")]
-    partial class hh
+    [Migration("20220217082609_ggg")]
+    partial class ggg
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -245,12 +245,24 @@ namespace Neetechs_MVC.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("File")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

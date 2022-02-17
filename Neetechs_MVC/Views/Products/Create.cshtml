@@ -17,6 +17,11 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+@*            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />
@@ -35,6 +40,17 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="FileName" class="control-label"></label>
+                <input type="file" onchange="getFile(this)" asp-for="FileName" class="form-control" />
+                <span asp-validation-for="FileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+@*                <input asp-for="File" class="form-control" />
+*@                <img id="formImage" height="200"/>
+@*                <span asp-validation-for="File" class="text-danger"></span>
+*@            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -47,6 +63,19 @@
 
 @section Scripts {
     <script>
+        
+        function getFile(data){
+
+            const image = document.getElementById("formImage");
+            const reader = new FileReader();
+            const file = data.files[0];
+
+            reader.addEventListener("load", function () {
+                image.src = reader.result;
+            }, false);
+
+            reader.readAsDataURL(file);
+        }
         function getModels(data){
             let selected = data.value;
             //$("#model").empty();

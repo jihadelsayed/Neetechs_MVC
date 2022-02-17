@@ -1,4 +1,6 @@
-﻿namespace Neetechs.Model
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Neetechs.Model
 {
     public class Product
     {
@@ -8,10 +10,14 @@
         public string UserId { get; set; }
         public DateTime AddDate = new DateTime();
 
-        public DateTime Date { get; set; } 
+        public DateTime Date { get; set; }
         public string Brand { get; set; }
         public int Price { get; set; }
 
+        public string FileName { get; set; }
+        public byte[] File { get; set; }
+        [NotMapped]
+        public IFormFile FormFile { get; set; }
 
     }
     public class Laptop : Product

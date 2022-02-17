@@ -13,7 +13,6 @@ using System.Security.Claims;
 
 namespace Neetechs_MVC.Controllers
 {
-    
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,11 +23,9 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: Products
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return View();
-
+            return View(await _context.Products.ToListAsync());
         }
         // GET: MyProducts
         public async Task<IActionResult> SearchMyProducts(string search)
@@ -93,11 +90,8 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: Products/Create
-        [Authorize]
-        //[Authorize(Roles = "Administrator, SuperUser")]
         public IActionResult Create()
         {
-
             List<SelectListItem> brands = new List<SelectListItem>();
             brands.Add(new SelectListItem("asus", "Asus"));
             brands.Add(new SelectListItem("asus", "Asus"));
@@ -111,9 +105,8 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Date,Brand,Price")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Date,Brand,Price,FileName,File")] Product product)
         {
-
             if (ModelState.IsValid)
             {
                 product.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -145,7 +138,7 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Date,Brand,Price")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Date,Brand,Price,FileName,File")] Product product)
         {
             if (id != product.Id)
             {
@@ -207,25 +200,6 @@ namespace Neetechs_MVC.Controllers
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
-        }
-        public JsonResult GetModels(string selected)
-        {
-
-            List<SelectListItem> brands = new List<SelectListItem>();
-            if (selected == "volvo")
-            {
-                brands.Add(new SelectListItem("ddd", "ddd"));
-
-            }
-            else
-            {
-                brands.Add(new SelectListItem("sss", "sss"));
-
-            }
-            brands.Add(new SelectListItem("asus", "Asus"));
-
-            return Json(brands);
-
         }
     }
 }
