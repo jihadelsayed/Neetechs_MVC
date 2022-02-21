@@ -10,23 +10,39 @@
 <style>
 .main {
     width: 100%;
-    float: left;
+/*    float: left;
+*/ }
+
+.leftSide,.col-12 {
+/*    float: left;
+*/     background: cyan;
+    width: 280px!important;
+    margin:0px;
 }
 
-.leftSide {
-    float: left;
-    background: cyan;
-    width: 20%; 
-}
+.middleSide  {
+     background-color:sandybrown ;
+     width:auto;
+     margin:0px;
+/*    float: left;
+    max-width: 780px;
+    max-width: 780px;
+    min-width:520px;
+     min-width:20vw;
+        max-width:60vw;
+*/   
 
-.middleSide {
-    float: left;
-    width: 60%;
 }
+.middleSideContainer  {
+    width:auto;
+  
 
-.rightSide {
-    float: right;
-    width: 20%;
+}
+.rightSide,.col-32 {
+/*    float: right;
+*/     width: 280px!important;
+    margin:0px;
+
     background-color: #eee;
 }
 
@@ -36,6 +52,21 @@
     width: 100%;     
     white-space: nowrap;
     line-height: 60px;
+}
+nav{
+    height: 56px;
+
+}
+
+@@media screen and (max-width: 980px) {
+    .leftSide {
+        display:none;
+    }
+}
+@@media screen and (max-width: 1200px) {
+    .rightSide {
+        display:none;
+    }
 }
 </style>
 
@@ -48,14 +79,16 @@
         </nav>
     </header>
 
-     <main class="main">
-          <aside class="leftSide">
+     <main class="main row">
+          <aside class="leftSide col-12">
                 <partial name="_Sidebar" />
           </aside>
-          <div class="middleSide container ">
+          <div class="middleSide col">
+            <div class="middleSideContainer  container">
                 @RenderBody()
+            </div>
           </div>
-          <aside class="rightSide border-right">
+          <aside class="rightSide border-right col-32">
                 <partial name="_SidebarRight" />
           </aside>
     </main>
