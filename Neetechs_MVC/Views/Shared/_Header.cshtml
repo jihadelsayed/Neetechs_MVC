@@ -1,6 +1,75 @@
 ﻿
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Neetechs_MVC</a>
+<style>
+.main {
+    width: 100%;
+/*    float: left;
+*/ }
+
+.leftSide,.col-12 {
+/*    float: left;
+     background: cyan;
+ */   width: 280px!important;
+    margin:0px;
+}
+
+.middleSide  {
+     width:auto;
+     margin:0px;
+/*        background-color:sandybrown ;
+ float: left;
+    max-width: 780px;
+    max-width: 780px;
+    min-width:520px;
+     min-width:20vw;
+        max-width:60vw;
+*/   
+
+}
+.middleSideContainer  {
+    width:auto;
+  
+
+}
+.rightSide,.col-32 {
+/*    float: right;
+*/     width: 280px!important;
+    margin:0px;
+
+    background-color: #eee;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;     
+    white-space: nowrap;
+    line-height: 60px;
+}
+nav{
+    height: 56px;
+
+}
+.logo{
+    width:40px;
+    height:40px;
+}
+@@media screen and (max-width: 980px) {
+    .leftSide {
+        display:none;
+    }
+}
+@@media screen and (max-width: 1200px) {
+    .rightSide {
+        display:none;
+    }
+}
+</style>
+
+
+<div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/logo.png" class="logo" />
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
