@@ -33,10 +33,11 @@
         */
 
       }
-      svg{
+      .middleNav svg{
             height:28px;
             width:28px;
         }
+
       @@media screen and (max-width: 980px) {
         leftSide {
           display: none;
@@ -52,6 +53,44 @@
             width:28px;
         }
       }
+
+      /* search bar style */
+      .searchBar{
+        margin-bottom: auto;
+        margin-top: auto;
+        background-color: #353b48;
+        border-radius: 30px;
+        padding: 10px;
+      }
+
+    .searchInput{
+        color: white;
+        border: 0;
+        outline: 0;
+        background: none;
+        width: 0;
+        caret-color:transparent;
+        transition: width 0.4s linear;
+    }
+    .searchIcon{
+        width: 40px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        color:white;
+        text-decoration:none;
+        
+    }
+    .searchBar:hover > .searchInput{
+        width: 240px;
+        caret-color:red;
+        transition: width 0.4s linear;
+    }
+
+    .searchBar:hover > .searchIcon{
+    }
+
+
 </style>
 <div class="container-fluid ">
 
@@ -62,17 +101,28 @@
                 <img src="~/logo.png" class="logo" />
               </a>
           </li>
-          <li class="nav-item">
-              <form class="navbar-nav col" data-ajax="true" data-ajax-method="get" data-ajax-update="#weather" data-ajax-mode="replace" data-ajax-url="@Url.Action(" WeatherTask", "Weather" )"> Search weather: <input type="text" name="town" />
-                <input type="submit" name="Search" />
-              </form>
+          <li class="" >
+              <div class="container h-100">
+                  <div class="d-flex justify-content-center h-100">
+                    <div class="searchBar">
+                      <input class="searchInput" type="text" name="" placeholder="Search...">
+                      <a href="#" class="searchIcon">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                      </a>
+                    </div>
+                  </div>
+               </div>
+     @*         <form class="navbar-nav col" data-ajax="true" data-ajax-method="get" data-ajax-update="#weather" data-ajax-mode="replace" data-ajax-url="@Url.Action(" WeatherTask", "Weather" )"> 
+                  <input class="searchInput" type="text" name="town" />
+                <input  type="submit" name="Search" />
+              </form>*@
           </li>
       </ul>
   </aside>
-  <div class="navbar-brand middleNav">
-    <ul class="icons navbar-nav flex-grow-1">
-      <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+  <div class="navbar-brand middleNav ">
+    <ul class="icons navbar-nav flex-grow-1 row">
+      <li class="nav-item col">
+        <a class="list-group-item list-group-item-action lh-tight text-dark" asp-area="" asp-controller="Home" asp-action="Index">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu">
             <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
             <rect x="9" y="9" width="6" height="6"></rect>
@@ -87,8 +137,26 @@
           </svg>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">
+      <li class="nav-item list-group-item list-group-item-action lh-tight col">
+        <a class="text-dark" asp-area="" asp-controller="Products" asp-action="Index">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </a>
+      </li>
+      <li class="nav-item col">
+        <a class="list-group-item list-group-item-action lh-tight nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </a>
+      </li>
+      <li class="nav-item col">
+        <a class="list-group-item list-group-item-action lh-tight nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
