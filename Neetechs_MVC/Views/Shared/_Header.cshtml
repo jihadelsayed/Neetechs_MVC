@@ -81,15 +81,23 @@
         text-decoration:none;
         
     }
+    .searchResult{
+
+        height:30vh;
+        width:30vw;
+        display:none;
+    }
     .searchBar:hover > .searchInput{
-        width: 240px;
+        width: 160px;
         caret-color:red;
         transition: width 0.4s linear;
     }
 
     .searchBar:hover > .searchIcon{
     }
-
+    .searchBar:hover > .searchResult{
+        display:block;
+    }
 
 </style>
 <div class="container-fluid ">
@@ -101,17 +109,15 @@
                 <img src="~/logo.png" class="logo" />
               </a>
           </li>
-          <li class="" >
-              <div class="container h-100">
-                  <div class="d-flex justify-content-center h-100">
-                    <div class="searchBar">
+          <li class="searchBar" >
+
                       <input class="searchInput" type="text" name="" placeholder="Search...">
                       <a href="#" class="searchIcon">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                       </a>
-                    </div>
-                  </div>
-               </div>
+                <div class="searchResult">
+
+                </div >
      @*         <form class="navbar-nav col" data-ajax="true" data-ajax-method="get" data-ajax-update="#weather" data-ajax-mode="replace" data-ajax-url="@Url.Action(" WeatherTask", "Weather" )"> 
                   <input class="searchInput" type="text" name="town" />
                 <input  type="submit" name="Search" />
