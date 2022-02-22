@@ -7,71 +7,93 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Neetechs_MVC.styles.css" asp-append-version="true" />
-<style>
-.main {
-    width: 100%;
-/*    float: left;
-*/ }
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <style>
+        .main {
+            width: 100%;
+        /*    float: left;
+        */ }
 
-.leftSide,.col-12 {
-/*    float: left;
-     background: cyan;
- */   width: 280px!important;
-    margin:0px;
-}
+        .leftSide,.col-12 {
 
-.middleSide  {
-     width:auto;
-     margin:0px;
-/*        background-color:sandybrown ;
- float: left;
-    max-width: 780px;
-    max-width: 780px;
-    min-width:520px;
-     min-width:20vw;
-        max-width:60vw;
-*/   
+        /*    float: left;
+             background: cyan;
+         */   
+             width: 280px!important;
+             margin:0px;
+             position: -webkit-sticky; /* Safari */
+             position: fixed;
+             left: 0;
+             top:64px;
+        }
+        header{
+             position: -webkit-sticky; /* Safari */
+             position: sticky;
+             left: 0;
+             top:0;
+             z-index:10;
+        }
+        .middleSide  {
+             width:auto;
+             margin:0px;
+             position:auto;
+             padding-left:280px;
 
-}
-.middleSideContainer  {
-    width:auto;
-  
+        /*        
+            background-color:sandybrown ;
+            float: left;
+            max-width: 780px;
+            max-width: 780px;
+            min-width:520px;
+            min-width:20vw;
+            max-width:60vw;
+        */
+        }
+        .middleSideContainer  {
+            width:auto;
+        }
+        .rightSide,.col-32 {
+        /*    float: right;
+        */
+            width: 280px!important;
+            margin:0px;
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            right:0;
+            background-color: #eee;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;     
+            white-space: nowrap;
+            line-height: 60px;
+        }
+        nav{
+            height: 56px;
 
-}
-.rightSide,.col-32 {
-/*    float: right;
-*/     width: 280px!important;
-    margin:0px;
+        }
+        .logo{
+            width:40px;
+            height:40px;
+        }
+        @@media screen and (max-width: 980px) {
+            .leftSide {
+                display:none;
 
-    background-color: #eee;
-}
+            }
+            .middleSide{
+                padding-left:10px;
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;     
-    white-space: nowrap;
-    line-height: 60px;
-}
-nav{
-    height: 56px;
-
-}
-.logo{
-    width:40px;
-    height:40px;
-}
-@@media screen and (max-width: 980px) {
-    .leftSide {
-        display:none;
-    }
-}
-@@media screen and (max-width: 1200px) {
-    .rightSide {
-        display:none;
-    }
-}
-</style>
+            }
+        }
+        @@media screen and (max-width: 1200px) {
+            .rightSide {
+                display:none;
+            }
+       
+        }
+    </style>
 
 </head>
 <body>
@@ -87,7 +109,7 @@ nav{
                 <partial name="_Sidebar" />
           </aside>
           <div class="middleSide col">
-            <div class="middleSideContainer  container">
+            <div class="middleSideContainer container">
                 @RenderBody()
             </div>
           </div>

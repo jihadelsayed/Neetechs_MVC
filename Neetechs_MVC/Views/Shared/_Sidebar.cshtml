@@ -1,4 +1,4 @@
-﻿<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" >
+﻿<div class="h-80 d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" >
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-4">Sidebar</span>
@@ -35,6 +35,25 @@
           Customers
         </a>
       </li>
+            <li>
+        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          Privacy
+        </a>
+      </li>
+       <li>
+        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          Dashboard(U_DEV)
+        </a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" asp-area="" asp-controller="Products" asp-action="Create">Add Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="weather">weather</a>
+        </li>
+
     </ul>
     <hr>
     <div class="dropdown">
