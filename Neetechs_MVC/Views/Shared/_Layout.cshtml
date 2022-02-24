@@ -21,7 +21,6 @@
          */   
              width: 280px!important;
              margin:0px;
-             position: -webkit-sticky; /* Safari */
              position: fixed;
              left: 0;
              top:64px;
@@ -36,10 +35,11 @@
         .middleSide  {
              width:auto;
              margin:0px;
-             position:auto;
              padding-left:280px;
 
-        /*        
+        /*      
+                     position:auto;
+
             background-color:sandybrown ;
             float: left;
             max-width: 780px;
@@ -105,7 +105,7 @@
     </header>
 
      <main class="main row">
-          <aside class="leftSide col-12">
+          <aside id="leftSide" class="leftSide col-12">
                 <partial name="_Sidebar" />
           </aside>
           <div class="middleSide col">

@@ -31,11 +31,31 @@ The class that I will add to create the website:
 ```
  Users
  Products: Users
+    title
+    categorie
+    price
+    description
+    photo
+    city
+    country
+
  Services: Users
- Profile: Users
- Settings: Users
+    title
+    categorie
+    price
+    description
+    photo
+    city
+    country
+ Profile: IdentityUser
+ Settings: IdentityUser
  Posts: Users
+    title
+    categorie
+    description
+    photo
  Messages: Users
  Notification: Users
+Comment 
 ```
 

@@ -15,6 +15,7 @@ using System.Drawing.Imaging;
 
 namespace Neetechs_MVC.Controllers
 {
+    
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -70,7 +71,6 @@ namespace Neetechs_MVC.Controllers
                 || product.Date.ToString().Contains(search)
                 || product.Name.Contains(search)
                 ).ToListAsync());
-
             }
         }
         // GET: Products/Details/5

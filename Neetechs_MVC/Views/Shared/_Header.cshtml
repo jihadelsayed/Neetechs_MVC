@@ -1,6 +1,6 @@
 ﻿<style>
 
-      .leftNav {
+     .leftNav {
                  width: 280px!important;
         /*    float: left;
          background: cyan;
@@ -24,7 +24,6 @@
       }
       .rightNav
       {
-        width: 280px!important;
 
         /*    float: right;
                 width: 280px !important;
@@ -39,13 +38,13 @@
         }
 
       @@media screen and (max-width: 980px) {
-        leftSide {
+        .leftNav {
           display: none;
         }
       }
 
       @@media screen and (max-width: 1200px) {
-        rightSide {
+        .rightNav {
           display: none;
         }
         svg{
@@ -63,7 +62,7 @@
         padding: 10px;
       }
 
-    .searchInput{
+        .searchInput{
         color: white;
         border: 0;
         outline: 0;
@@ -71,34 +70,27 @@
         width: 0;
         caret-color:transparent;
         transition: width 0.4s linear;
-    }
-    .searchIcon{
-        width: 40px;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        color:white;
-        text-decoration:none;
+        }
+        .searchIcon{
+            width: 40px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color:white;
+            text-decoration:none;
         
-    }
-    .searchResult{
+        }
+        .searchResult{
+        
+        }
+        .searchBar:hover > .searchInput{
+            width: 160px;
+            caret-color:red;
+            transition: width 0.4s linear;
+        }
 
-        height:30vh;
-        width:30vw;
-        display:none;
-    }
-    .searchBar:hover > .searchInput{
-        width: 160px;
-        caret-color:red;
-        transition: width 0.4s linear;
-    }
-
-    .searchBar:hover > .searchIcon{
-    }
-    .searchBar:hover > .searchResult{
-        display:block;
-    }
-
+        .searchBar:hover > .searchIcon{
+        }
 </style>
 <div class="container-fluid ">
 
@@ -115,9 +107,7 @@
                       <a href="#" class="searchIcon">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                       </a>
-                <div class="searchResult">
 
-                </div >
      @*         <form class="navbar-nav col" data-ajax="true" data-ajax-method="get" data-ajax-update="#weather" data-ajax-mode="replace" data-ajax-url="@Url.Action(" WeatherTask", "Weather" )"> 
                   <input class="searchInput" type="text" name="town" />
                 <input  type="submit" name="Search" />
@@ -128,7 +118,7 @@
   <div class="navbar-brand middleNav ">
     <ul class="icons navbar-nav flex-grow-1 row">
       <li class="nav-item col">
-        <a class="list-group-item list-group-item-action lh-tight text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+        <a class="list-group-item list-group-item-action lh-tight text-dark" asp-area="" asp-controller="Services" asp-action="Index">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu">
             <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
             <rect x="9" y="9" width="6" height="6"></rect>
@@ -153,26 +143,21 @@
         </a>
       </li>
       <li class="nav-item col">
-        <a class="list-group-item list-group-item-action lh-tight nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
+        <a class="list-group-item list-group-item-action lh-tight nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></svg>
         </a>
       </li>
       <li class="nav-item col">
-        <a class="list-group-item list-group-item-action lh-tight nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
-        </a>
+        <a class="list-group-item list-group-item-action lh-tight nav-link text-dark" asp-area="" asp-controller="Notifications" asp-action="Index">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>        </a>
       </li>
     </ul>
   </div>
-  <aside class="rightNav">
+  <ul class="navbar-nav navbar-right rightNav">
+
     <partial name="_LoginPartial" />
-  </aside>
+  </ul>
 </div>
+<div class="searchResult">
+   
+</div >

@@ -1,6 +1,70 @@
 ﻿@model IEnumerable<Neetechs.Model.Product>
+<style>
 
-<table class="table">
+.mt-50 {
+    margin-top: 50px
+}
+
+.mb-50 {
+    margin-bottom: 50px
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .1875rem
+}
+
+.card-img-actions {
+    position: relative
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    text-align: center
+}
+
+.card-img {
+    width: 350px
+}
+
+.star {
+    color: red
+}
+
+.bg-cart {
+    background-color: orange;
+    color: #fff
+}
+
+.bg-cart:hover {
+    color: #fff
+}
+
+.bg-buy {
+    background-color: green;
+    color: #fff;
+    padding-right: 29px
+}
+
+.bg-buy:hover {
+    color: #fff
+}
+
+a {
+    text-decoration: none !important
+}
+</style>
     <thead>
         <tr>
             <th>
@@ -27,39 +91,41 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FileName)
-            </td>
-            <td>
+    <div class="row">
+        <div class="col-md-4 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-img-actions">
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.File)" class="card-img img-fluid" width="96" height="350" alt=""/>
+                    </div>
+                    <div class="card-body bg-light text-center">
+                        <div class="mb-2">
+                            <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">@Html.DisplayFor(modelItem => item.Name)</a> </h6> 
+                            <a href="#" class="text-muted" data-abc="true">@Html.DisplayFor(modelItem => item.Brand)</a>
+                        </div>
+                        <h3 class="mb-0 font-weight-semibold">@Html.DisplayFor(modelItem => item.Price)</h3>
+                        <div> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> </div>
+                        <div class="text-muted mb-3">34 reviews</div> 
+                        <button type="button" class="btn bg-cart">
+                            <i class="fa fa-cart-plus mr-2"></i> Add to cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
 @*                @Html.DisplayFor(modelItem => item.File)
-*@
-                <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.File)" height="30"/>
+              @Html.DisplayFor(modelItem => item.FileName)
 
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+                @Html.DisplayFor(modelItem => item.UserId)
+
+                @Html.DisplayFor(modelItem => item.Date)
+*@
+                
+
+    
+         
+         
 }
-    </tbody>
-</table>
