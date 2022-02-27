@@ -74,7 +74,6 @@ D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\Neetechs_MVC.exe
 D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\Neetechs_MVC.deps.json
 D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\Neetechs_MVC.runtimeconfig.json
 D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\Neetechs_MVC.dll
-D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\ref\Neetechs_MVC.dll
 D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\Neetechs_MVC.pdb
 D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\Humanizer.dll
 D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\MessagePack.dll
@@ -625,3 +624,12 @@ D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\runtimes\win\lib\net6.0\Mic
 D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 D:\GitHub\Neetechs_MVC\Neetechs_MVC\obj\Debug\net6.0\scopedcss\Views\Shared\_Sidebar.cshtml.rz.scp.css
+D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\refs\Microsoft.Extensions.Caching.Memory.dll
+D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\refs\Microsoft.Extensions.Identity.Core.dll
+D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\refs\Microsoft.Extensions.Identity.Stores.dll
+D:\GitHub\Neetechs_MVC\Neetechs_MVC\obj\Debug\net6.0\refint\Neetechs_MVC.dll
+D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\Npgsql.dll
+D:\GitHub\Neetechs_MVC\Neetechs_MVC\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

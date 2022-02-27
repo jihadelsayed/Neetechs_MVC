@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:Neetechs_MVC.Controllers.ProductsController.Create(Neetechs.Model.Product)~System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.IActionResult}")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:Neetechs_MVC.Controllers.ServicesController.Create(Neetechs_MVC.Models.Service)~System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.IActionResult}")]

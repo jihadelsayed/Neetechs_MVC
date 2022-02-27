@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MI7XCpKu8H8yWqc+3j1rYPG0mAGdhOnhPhtubDCzkxg=",
+  "Hash": "ZjcsAemC+IeeFLbZly04VRfRBQkPG9ArLIZkvueO1dA=",
   "Source": "Neetechs_MVC",
   "BasePath": "_content/Neetechs_MVC",
   "Mode": "Default",
@@ -1156,6 +1156,23 @@
       "OriginalItemSpec": "wwwroot\\icons\\cpu.svg"
     },
     {
+      "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\icons\\flag.svg",
+      "SourceId": "Neetechs_MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\",
+      "BasePath": "_content/Neetechs_MVC",
+      "RelativePath": "icons/flag.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\icons\\flag.svg"
+    },
+    {
       "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\icons\\home.svg",
       "SourceId": "Neetechs_MVC",
       "SourceType": "Discovered",
@@ -1258,6 +1275,23 @@
       "OriginalItemSpec": "wwwroot\\icons\\monitor.svg"
     },
     {
+      "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\icons\\more-vertical.svg",
+      "SourceId": "Neetechs_MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\",
+      "BasePath": "_content/Neetechs_MVC",
+      "RelativePath": "icons/more-vertical.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\icons\\more-vertical.svg"
+    },
+    {
       "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\icons\\notification.svg",
       "SourceId": "Neetechs_MVC",
       "SourceType": "Discovered",
@@ -1324,6 +1358,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\icons\\shopping-cart.svg"
+    },
+    {
+      "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\icons\\trash.svg",
+      "SourceId": "Neetechs_MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\",
+      "BasePath": "_content/Neetechs_MVC",
+      "RelativePath": "icons/trash.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\icons\\trash.svg"
     },
     {
       "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\icons\\user.svg",

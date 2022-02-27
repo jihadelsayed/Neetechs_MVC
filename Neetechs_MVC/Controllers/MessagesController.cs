@@ -25,7 +25,13 @@ namespace Neetechs_MVC.Controllers
         {
             return View(await _context.Messages.ToListAsync());
         }
+        // GET: Messages/MessagesTask
 
+        public async Task<IActionResult> MessagesTask()
+        {
+            return PartialView("_Messages");
+
+        }
         // GET: Messages/Details/5
         public async Task<IActionResult> Details(int? id)
         {

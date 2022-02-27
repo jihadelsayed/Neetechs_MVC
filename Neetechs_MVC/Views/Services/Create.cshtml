@@ -18,11 +18,6 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
@@ -31,6 +26,14 @@
                 <label asp-for="Category" class="control-label"></label>
                 <input asp-for="Category" class="form-control" />
                 <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+                        <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+@*                <input asp-for="Category" class="form-control" />
+*@              <select id="Category" onchange="getModels(this)" asp-for="Category"  asp-items=@ViewBag.SelectCategory class="form-control"></select>
+@*<select id="Category" onchange="getModels(this)" asp-for="Category"  asp-items=@(List<SelectListItem>)(@ViewData["SelectCategory"]) class="form-control"></select>
+*@                <span asp-validation-for="Category" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
@@ -47,15 +50,15 @@
                 <input asp-for="Location" class="form-control" />
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
-            <div class="form-group">
+       <div class="form-group">
                 <label asp-for="FileName" class="control-label"></label>
-                <input asp-for="FileName" class="form-control" />
-                <span asp-validation-for="FileName" class="text-danger"></span>
+                <input type="file" onchange="getFile(this)" asp-for="FileName" name="FormFile" class="form-control" />
+                <span asp-validation-for="FormFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="File" class="control-label"></label>
-                <input asp-for="File" class="form-control" />
-                <span asp-validation-for="File" class="text-danger"></span>
+@*                <input asp-for="File" class="form-control" />
+*@                <img id="formImage" height="200"/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -68,3 +71,37 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+@section Scripts {
+    <script>
+        
+        function getFile(data){
+
+            const image = document.getElementById("formImage");
+            const reader = new FileReader();
+            const file = data.files[0];
+
+            reader.addEventListener("load", function () {
+                image.src = reader.result;
+            }, false);
+
+            reader.readAsDataURL(file);
+        }
+        function getModels(data){
+            let selected = data.value;
+            //$("#model").empty();
+            $.ajax({
+                url:'/Services/GetModels',
+                data:{'select': selected},
+                dataType:'json',
+                success: function(models){
+                    $.each(models,function(index,model){
+                        let option = new Option(model.text, model.value);
+                        $('#Category').append(option);
+                    })
+                }
+            })
+        }
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

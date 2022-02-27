@@ -140,6 +140,24 @@
             }
 
         }) })
+        $(document).ready( function(){
+         $.ajax({
+                type:'GET',
+                url:'/Notifications/NotificationsTask',
+                success:function(data){
+                    $('#notifications').html(data);
+            }
+
+        }) })
+        $(document).ready( function(){
+
+            $.ajax({
+                type:'GET',
+                url:'/Messages/MessagesTask',
+                success:function(data){
+                    $('#messages').html(data);
+            }
+        }) })
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)

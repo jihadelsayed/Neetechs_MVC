@@ -1,41 +1,52 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
+<style>
+  #notifications,#messages{
+    overflow-y:scroll;
+    height: 80vh;
+    width: 360px;
+  }
+</style>
 @if (SignInManager.IsSignedIn(User))
 {
-       <a href="#" class="d-flex align-items-center text-dark text-decoration-none" >
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>@User.Identity?.Name</strong>
-      </a>
-         <li class="nav-item dropdown">
-            <button type="button" class="nav-link btn btn-link text-dark" 
+        <li class="nav-item">
+          <a asp-controller="Profile" asp-action="Index" class="d-flex align-items-center text-dark text-decoration-none" >
+            <img src="https://avatars.githubusercontent.com/u/22003531?v=4" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>@User.Identity?.Name</strong>
+          </a>
+        </li>
+
+        @* Notifications *@
+        <li class="nav-item dropdown">
+            <button href="#notifications" type="button" class="nav-link btn btn-link text-dark dropdown-toggle" 
            data-bs-toggle="dropdown">
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
             </button>
-              <div class="dropdown-menu dropdown-menu-end">
-                <button class="dropdown-item" type="button">Action</button>
-                <button class="dropdown-item" type="button">Another action</button>
-                <button class="dropdown-item" type="button">Something else here</button>
+              <div id="notifications" class="dropdown-menu dropdown-menu-end">
               </div>
         </li>
+
+        @* Messages *@
         <li class="nav-item dropdown">
-            <button type="button" class="nav-link btn btn-link text-dark" 
+            <button href="#messages" type="button" class="nav-link btn btn-link text-dark" 
            data-bs-toggle="dropdown">
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
             </button>
-              <div class="dropdown-menu dropdown-menu-end">
-                <button class="dropdown-item" type="button">Action</button>
-                <button class="dropdown-item" type="button">Another action</button>
-                <button class="dropdown-item" type="button">Something else here</button>
+              <div id="messages" class="dropdown-menu dropdown-menu-end">
+
               </div>
         </li>
+        @* Settings, privacy and help *@
+
         <li class="nav-item dropdown">
-            <button type="button" class="nav-link btn btn-link text-dark" 
+            <button type="button"  class="nav-link btn btn-link text-dark" href="#settingButton" 
            data-bs-toggle="dropdown">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
             </button>
-              <div class="dropdown-menu dropdown-menu-end">
+              <div class="dropdown-menu dropdown-menu-end" id="settings">
                 <button class="dropdown-item" type="button">Action</button>
                 <button class="dropdown-item" type="button">Another action</button>
                 <button class="dropdown-item" type="button">Something else here</button>

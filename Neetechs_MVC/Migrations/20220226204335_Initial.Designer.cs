@@ -12,8 +12,8 @@ using Neetechs_MVC.Data;
 namespace Neetechs_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220223195540_asd")]
-    partial class asd
+    [Migration("20220226204335_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

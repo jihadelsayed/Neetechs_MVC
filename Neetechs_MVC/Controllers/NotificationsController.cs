@@ -8,11 +8,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Neetechs_MVC.Data;
 using Neetechs_MVC.Models;
-
 namespace Neetechs_MVC.Controllers
 {
+
     public class NotificationsController : Controller
     {
+        public async Task<IActionResult> NotificationsTask()
+        {
+            return PartialView("_Notifications", await _context.Notifications.ToListAsync());
+
+        }
         private readonly ApplicationDbContext _context;
 
         public NotificationsController(ApplicationDbContext context)
