@@ -10,7 +10,7 @@ namespace Neetechs_MVC.Models
         public DateTime? AddDate = new DateTime();
 
         public DateTime Date { get; set; }
-        public Category? Category { get; set; }
+        public string Category { get; set; }
         public int Price { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }

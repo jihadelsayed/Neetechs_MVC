@@ -28,6 +28,11 @@
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Brand" class="control-label"></label>
 @*                <input asp-for="Brand" class="form-control" />
 *@              <select id="brand" onchange="getModels(this)" asp-for="Brand"  asp-items=@ViewBag.SelectBrand class="form-control"></select>

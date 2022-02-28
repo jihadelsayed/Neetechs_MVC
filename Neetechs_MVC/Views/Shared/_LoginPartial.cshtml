@@ -11,9 +11,9 @@
 @if (SignInManager.IsSignedIn(User))
 {
         <li class="nav-item">
-          <a asp-controller="Profile" asp-action="Index" class="d-flex align-items-center text-dark text-decoration-none" >
+          <a href="/Profile/Details/@UserManager.GetUserAsync(User).Result.Id" class="d-flex align-items-center text-dark text-decoration-none" >
             <img src="https://avatars.githubusercontent.com/u/22003531?v=4" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>@User.Identity?.Name</strong>
+            <strong>@UserManager.GetUserAsync(User).Result.</strong>
           </a>
         </li>
 
@@ -47,7 +47,9 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
             </button>
               <div class="dropdown-menu dropdown-menu-end" id="settings">
-                <button class="dropdown-item" type="button">Action</button>
+               
+                        <a  href="/Identity/Account/manage" class="dropdown-item nav-link btn btn-link text-dark">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>                        Manage</a>
                 <button class="dropdown-item" type="button">Another action</button>
                 <button class="dropdown-item" type="button">Something else here</button>
                     <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

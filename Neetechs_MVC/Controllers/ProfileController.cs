@@ -1,10 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Neetechs_MVC.Data;
 
 namespace Neetechs_MVC.Controllers
 {
     public class ProfileController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public ProfileController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         // GET: ProfileController
         public ActionResult Index()
         {
@@ -12,11 +20,22 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: ProfileController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        public async Task<IActionResult> Details(string? id)
+        {      
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var post = await _context.Profiles
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            return View(post);
+        }
         // GET: ProfileController/Create
         public ActionResult Create()
         {

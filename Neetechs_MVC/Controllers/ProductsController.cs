@@ -106,7 +106,7 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Date,Brand,Price,FormFile")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Date,Brand,Price,Description,FormFile")] Product product)
         {
             List<SelectListItem> brands = new List<SelectListItem>();
             brands.Add(new SelectListItem("asus", "Asus"));

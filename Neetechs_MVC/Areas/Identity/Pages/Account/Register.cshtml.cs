@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Neetechs_MVC.Models;
 
 namespace Neetechs_MVC.Areas.Identity.Pages.Account
 {
@@ -75,6 +76,21 @@ namespace Neetechs_MVC.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Full Name")]
+            public string FullName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "About")]
+            public string Description { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Profession")]
+            public string Profession { get; set; }
+            
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -112,7 +128,14 @@ namespace Neetechs_MVC.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                var use = CreateUser();
+                var user = new Profile() { 
+                   // Email = Input.Email, 
+                  //  UserName = Input.Email,
+                    FullName = Input.FullName,
+                    Profession = Input.Profession,
+                    Description = Input.Description,
+                };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

@@ -8,3 +8,9 @@ dotnet_diagnostic.CS8600.severity = none
 
 # CS8603: Possible null reference return.
 dotnet_diagnostic.CS8603.severity = none
+
+# Default severity for analyzer diagnostics with category 'Interoperability'
+dotnet_analyzer_diagnostic.category-Interoperability.severity = none
+
+# CS8602: Dereference of a possibly null reference.
+dotnet_diagnostic.CS8602.severity = silent

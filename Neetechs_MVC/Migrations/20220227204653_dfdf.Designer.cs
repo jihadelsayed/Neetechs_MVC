@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Neetechs_MVC.Data;
 
@@ -11,9 +12,10 @@ using Neetechs_MVC.Data;
 namespace Neetechs_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220227204653_dfdf")]
+    partial class dfdf
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -292,58 +294,6 @@ namespace Neetechs_MVC.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("Neetechs_MVC.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("Neetechs_MVC.Models.OrderItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderItem");
-                });
-
             modelBuilder.Entity("Neetechs_MVC.Models.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -352,9 +302,8 @@ namespace Neetechs_MVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -375,6 +324,8 @@ namespace Neetechs_MVC.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Posts");
                 });
 
@@ -386,9 +337,8 @@ namespace Neetechs_MVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -419,6 +369,8 @@ namespace Neetechs_MVC.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Services");
                 });
 
@@ -437,10 +389,6 @@ namespace Neetechs_MVC.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -455,18 +403,13 @@ namespace Neetechs_MVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<string>("ProfileId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProfileId");
 
                     b.ToTable("Products");
 
@@ -588,48 +531,22 @@ namespace Neetechs_MVC.Migrations
                     b.Navigation("SubCategory");
                 });
 
-            modelBuilder.Entity("Neetechs_MVC.Models.Order", b =>
+            modelBuilder.Entity("Neetechs_MVC.Models.Post", b =>
                 {
-                    b.HasOne("Neetechs_MVC.Models.Profile", "User")
+                    b.HasOne("Neetechs_MVC.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
-                    b.Navigation("User");
+                    b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Neetechs_MVC.Models.OrderItem", b =>
+            modelBuilder.Entity("Neetechs_MVC.Models.Service", b =>
                 {
-                    b.HasOne("Neetechs.Model.Product", "Product")
+                    b.HasOne("Neetechs_MVC.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
-                    b.HasOne("Neetechs_MVC.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Neetechs.Model.Product", b =>
-                {
-                    b.HasOne("Neetechs_MVC.Models.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId");
-
-                    b.Navigation("Profile");
-                });
-
-            modelBuilder.Entity("Neetechs_MVC.Models.Order", b =>
-                {
-                    b.Navigation("OrderItems");
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

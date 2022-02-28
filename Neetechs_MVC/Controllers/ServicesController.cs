@@ -50,22 +50,32 @@ namespace Neetechs_MVC.Controllers
         // GET: Services/Create
         public IActionResult Create()
         {
+            List<SelectListItem> category = _context.Categories.Select(cat => new SelectListItem(){
+                                      Text = cat.Name,
+                                      Value = cat.Id.ToString()
+                                  }).ToList<SelectListItem>();
+            //List<SelectListItem> brands = new List<SelectListItem>();
+            ViewBag.SelectCategory = category;
             return View();
-        }
+         }
 
         // POST: Services/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Date,Categorie,Price,Description,Location,FormFile")] Service service)
+        public async Task<IActionResult> Create([Bind("Id,Name,Date,Category,Price,Description,Location,FormFile")] Service service)
         {
-            List<SelectListItem> category = new List<SelectListItem>();
+            
+            List<SelectListItem> category = _context.Categories.Select(cat => new SelectListItem()
+            {
+                Text = cat.Name,
+                Value = cat.Id.ToString()
+            }).ToList<SelectListItem>();
             //List<SelectListItem> brands = new List<SelectListItem>();
-            category.Add(new SelectListItem("asus", "Asus"));
-            category.Add(new SelectListItem("asus", "Asus"));
             ViewBag.SelectCategory = category;
-            //ViewData["SelectCategory"] = brands;
+            //service.Category = Categorie;
+            ViewData["SelectCategory"] = service.Category;
 
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             service.UserId = userId;
@@ -108,6 +118,7 @@ namespace Neetechs_MVC.Controllers
                 service.File = bytes;
                 service.FileName = service.FormFile.FileName;
             }
+           // service = service;
             if (ModelState.IsValid)
             {
                 _context.Add(service);
@@ -117,6 +128,7 @@ namespace Neetechs_MVC.Controllers
 
             return View(service);
         }
+
 
         // GET: Services/Edit/5
         public async Task<IActionResult> Edit(int? id)

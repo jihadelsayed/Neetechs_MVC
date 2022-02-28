@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -24,14 +24,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
-            </div>
-                        <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-@*                <input asp-for="Category" class="form-control" />
-*@              <select id="Category" onchange="getModels(this)" asp-for="Category"  asp-items=@ViewBag.SelectCategory class="form-control"></select>
-@*<select id="Category" onchange="getModels(this)" asp-for="Category"  asp-items=@(List<SelectListItem>)(@ViewData["SelectCategory"]) class="form-control"></select>
+@*                               <input asp-for="Category" class="form-control" />
+
+              <select id="Category" onchange="getCategories(this)" asp-for="Category" asp-items=@ViewBag.SelectCategory class="form-control">
+    <option>Please select</option>
+                
+</select>*@
+                <select asp-for="Category" asp-items="@(List<SelectListItem>)(@ViewData["SelectCategory"])" class="form-control"></select>
+
+@*              <select id="Category" onchange="getModels(this)" asp-for="Category"  asp-items=@(List<SelectListItem>)(@ViewData["SelectCategory"]) class="form-control"></select>
 *@                <span asp-validation-for="Category" class="text-danger"></span>
 
             </div>
@@ -50,7 +51,7 @@
                 <input asp-for="Location" class="form-control" />
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
-       <div class="form-group">
+            <div class="form-group">
                 <label asp-for="FileName" class="control-label"></label>
                 <input type="file" onchange="getFile(this)" asp-for="FileName" name="FormFile" class="form-control" />
                 <span asp-validation-for="FormFile" class="text-danger"></span>
@@ -87,7 +88,7 @@
 
             reader.readAsDataURL(file);
         }
-        function getModels(data){
+        function getCategories(data){
             let selected = data.value;
             //$("#model").empty();
             $.ajax({

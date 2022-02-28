@@ -9,20 +9,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Neetechs_MVC.Data;
 
 namespace Neetechs_MVC.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ApplicationDbContext _context;
 
+        private readonly SignInManager<IdentityUser> _signInManager;
+   
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
+
         }
 
         /// <summary>
@@ -58,19 +64,40 @@ namespace Neetechs_MVC.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [DataType(DataType.Text)]
+            [Display(Name = "Full name")]
+            public string FullName { get; set; }
+            [DataType(DataType.Text)]
+            [Display(Name = "Profession")]
+            public string Profession { get; set; }
+            [DataType(DataType.Text)]
+            [Display(Name = "Description")]
+            public string Description { get; set; }
         }
+
+ 
+        //string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
             Username = userName;
-
-            Input = new InputModel
+            var profile = _context.Profiles.FirstOrDefault(p => p.Email == user.Email);
+            if (profile == null)
             {
-                PhoneNumber = phoneNumber
-            };
+            }
+            else {
+                Input = new InputModel
+                {
+                    FullName = profile.FullName,
+                    Description = profile.Description,
+                    Profession = profile.Profession,
+
+                    PhoneNumber = phoneNumber
+                };
+            } 
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -100,6 +127,8 @@ namespace Neetechs_MVC.Areas.Identity.Pages.Account.Manage
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var profile = await _context.Profiles.FindAsync(user.Id);
+
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
@@ -109,7 +138,25 @@ namespace Neetechs_MVC.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+   
 
+            if (Input.FullName != profile.FullName)
+            {
+
+                profile.FullName = Input.FullName;
+            }
+            if (Input.Description != profile.Description)
+            {
+                profile.Description = Input.Description;
+
+            }
+            if (Input.Profession != profile.Profession)
+            {
+                profile.Profession = Input.Profession;
+
+            }
+            _context.Profiles.Update(profile);
+            await _context.SaveChangesAsync();
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
