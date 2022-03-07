@@ -1,159 +1,109 @@
 ﻿@model IEnumerable<Neetechs.Model.Product>
+
 <style>
-    .mt-50 {
-        margin-top: 50px
+    .panel {
+        border: none;
+        background-color:#f7f2f2!important;
+        box-shadow: none;
     }
-
-    .mb-50 {
-        margin-bottom: 50px
+    .product-imitation.xl {
+        padding: 120px 0;
     }
-
-    .card {
-        position: relative;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #fff;
-        background-clip: border-box;
-        border: 1px solid rgba(0, 0, 0, .125);
-        border-radius: .1875rem
-    }
-
-    .card-img-actions {
-        position: relative
-    }
-
-    .card-body {
-        -ms-flex: 1 1 auto;
-        flex: 1 1 auto;
-        padding: 1.25rem;
-        text-align: center
-    }
-
-    .card-img {
-        width: 350px
-    }
-
-    .star {
-        color: red
-    }
-
-    .bg-cart {
-        background-color: orange;
-        color: #fff
-    }
-
-    .bg-cart:hover {
-        color: #fff
-    }
-
-    .bg-buy {
-        background-color: green;
-        color: #fff;
-        padding-right: 29px
-    }
-
-    .bg-buy:hover {
-        color: #fff
-    }
-
-    a {
-        text-decoration: none !important
+    .panel:hover,
+    .panel.active {
+          border: 1px solid transparent;
+          -webkit-box-shadow: 0 3px 7px 0 #a8a8a8;
+          -moz-box-shadow: 0 3px 7px 0 #a8a8a8;
+          box-shadow: 0 3px 7px 0 #a8a8a8;
     }
 </style>
-    <div class="row">
+<div class="row">
+    @foreach (var item in Model) {
+        <div class="col-md-3">
+            <div class="card panel">
+                <div class="card-img-actions pro-img-box">
+                     @if(@item.File != null){
+                         <img src="data:image/jpeg;base64,@Convert.ToBase64String(@item.File)" class="card-img img-thumbnail" width="220px" height="250px" alt=""/>
+                     }
+                </div>
+                <div class="card-body text-center">
+                     <h4>
+                         <a href="/Products/Details/@item.Id" data-abc="true" class="pro-title">
+                             @Html.DisplayFor(modelItem => item.Name)
+                         </a>
+                    </h4>
+                    <p class="price">$@Html.DisplayFor(modelItem => item.Price)</p>
+                     <button type="button" class="btn btn-orange" onclick="addToCart(@item.Id)"> Add to Cart </button>
 
-@foreach (var item in Model) {
-        <div class="col-md-4 mt-2">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-img-actions">
-                        @if(@item.File != null){
-                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(@item.File)" class="card-img img-fluid" width="26" height="96" alt=""/>
-                        }
+                    @*                
+	                <div class="mb-2">
+                        <a href="#" data-abc="true">@Html.DisplayFor(modelItem => item.Brand)</a> 
                     </div>
-                    <div class="card-body bg-light text-center">
-                        <div class="mb-2">
-                            <h6 class="font-weight-semibold mb-2"> <a href="/Products/Details/@item.Id" class="text-default mb-2" data-abc="true">@Html.DisplayFor(modelItem => item.Name)</a> </h6> 
-                            <a href="#" class="text-muted" data-abc="true">@Html.DisplayFor(modelItem => item.Brand)</a>
-                        </div>
-                        <h3 class="mb-0 font-weight-semibold">@Html.DisplayFor(modelItem => item.Price)</h3>
-                        <div> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> </div>
-                        <div class="text-muted mb-3">34 reviews</div> 
-                            @*                        <button href="@Url.Action("AddtoCart","Home", new {id=@item.Id })" class="btn bg-cart">
-                            Add to Cart
-                        </button>*@
-                        <button type="button" class="filled-button btn bg-cart" onclick="addToCart(@item.Id)">
+	                <h3 >@Html.DisplayFor(modelItem => item.Price)</h3>
+	                <div> 
+                        <i class="fa fa-star star"></i>
+                        <i class="fa fa-star star"></i>
+                        <i class="fa fa-star star"></i> 
+                        <i class="fa fa-star star"></i> 
+                    </div>
+	                <div>34 reviews</div>
+                    *@
 
-                            Add to Cart
-                        </button>
-        @*                <button type="button" class="filled-button btn bg-cart" onclick="getCartSession()">
-                            getCartSession
-                        </button>*@
-                    </div>
                 </div>
             </div>
         </div>
-        
-                                @*                @Html.DisplayFor(modelItem => item.File)
-                                            @Html.DisplayFor(modelItem => item.FileName)
-
-                                                @Html.DisplayFor(modelItem => item.UserId)
-
-                                                @Html.DisplayFor(modelItem => item.Date)
-                                *@
-}
+        @* @Html.DisplayFor(modelItem => item.File) @Html.DisplayFor(modelItem => item.FileName) @Html.DisplayFor(modelItem => item.UserId) @Html.DisplayFor(modelItem => item.Date) *@
+    }
 </div>
 
 <script>
-var addToCartUrl = "@Url.Action("AddtoCart", "CartItems")";
-        function addToCart(id) {
-            //e.preventDefault();
-            // make ajax request
-            console.log(id)
-            $.ajax({
-                url: addToCartUrl,
-                data: { id: id },
-                success: function (response) {
-                  jsonCartItemsResponse = eval(response)
-                    numberOfCartItems = jsonCartItemsResponse.length
-                    //Total Subtotal Subtotal
-                    var cartBadge = document.getElementById("cartBadge");
+    var addToCartUrl = "@Url.Action("AddtoCart", "CartItems")";
+    function addToCart(id) {
+        //e.preventDefault();
+        // make ajax request
+        console.log(id)
+        $.ajax({
+            url: addToCartUrl,
+            data: {
+                id: id
+            },
+            success: function(response) {
+                jsonCartItemsResponse = eval(response)
+                numberOfCartItems = jsonCartItemsResponse.length
+                //Total Subtotal Subtotal
+                var cartBadge = document.getElementById("cartBadge");
 
-                    cartBadge.innerHTML = numberOfCartItems
-                    var deleteCartEl = document.getElementById("cartNotification");
+                cartBadge.innerHTML = numberOfCartItems
+                var deleteCartEl = document.getElementById("cartNotification");
 
-                    console.log(deleteCartEl)
-                    deleteCartEl.remove();
-                    var mainDiv = document.createElement('div');
-                    mainDiv.setAttribute('id', 'cartNotification');
-                    document.getElementById("notificationCart").appendChild(mainDiv);
+                console.log(deleteCartEl)
+                deleteCartEl.remove();
+                var mainDiv = document.createElement('div');
+                mainDiv.setAttribute('id', 'cartNotification');
+                document.getElementById("notificationCart").appendChild(mainDiv);
 
-                    mainDiv.innerHTML = document.getElementById("blockOfItem").innerHTML;
+                mainDiv.innerHTML = document.getElementById("blockOfItem").innerHTML;
 
-                    for (let i = 0; i < jsonCartItemsResponse.length; i++) {
-                      text += jsonCartItemsResponse[i] + "<br>";
-                        var div = document.createElement('div');
-                        div.setAttribute('class', 'someClass');
-                        div.innerHTML = document.getElementById("blockOfItem").innerHTML;
+                for (let i = 0; i < jsonCartItemsResponse.length; i++) {
+                    text += jsonCartItemsResponse[i] + "<br>";
+                    var div = document.createElement('div');
+                    div.setAttribute('class', 'someClass');
+                    div.innerHTML = document.getElementById("blockOfItem").innerHTML;
 
-                        div.innerHTML = div.innerHTML
-                            .replace(/{id}/g, jsonCartItemsResponse[i].Id)
-                            .replace(/{productId}/g, jsonCartItemsResponse[i].Product.Id)
-                            .replace(/{quantity}/g, jsonCartItemsResponse[i].Quantity)
-                            .replace(/{price}/g, jsonCartItemsResponse[i].Product.Price);
+                    div.innerHTML = div.innerHTML
+                        .replace(/{id}/g, jsonCartItemsResponse[i].Id)
+                        .replace(/{productId}/g, jsonCartItemsResponse[i].Product.Id)
+                        .replace(/{quantity}/g, jsonCartItemsResponse[i].Quantity)
+                        .replace(/{price}/g, jsonCartItemsResponse[i].Product.Price);
 
-                        document.getElementById('cartNotification').appendChild(div);
-                    }
-
-                    //var deleteFromCartEl = document.getElementById(id);
-
-                    console.log(eval(response))
-                    //
+                    document.getElementById('cartNotification').appendChild(div);
                 }
-            });
-        }
+
+                //var deleteFromCartEl = document.getElementById(id);
+
+                console.log(eval(response))
+                //
+            }
+        });
+}
 </script>
