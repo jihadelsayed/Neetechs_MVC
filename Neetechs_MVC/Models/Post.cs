@@ -7,6 +7,7 @@ namespace Neetechs_MVC.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string? UserId { get; set; }
+        public Profile? Profile { get; set; }
         public DateTime? AddDate = new DateTime();
         public string Category { get; set; }
 

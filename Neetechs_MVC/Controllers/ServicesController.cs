@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Dynamic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +28,10 @@ namespace Neetechs_MVC.Controllers
         // GET: Services
         public async Task<IActionResult> Index()
         {
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Services = await _context.Services.ToListAsync();
+            mymodel.Profiles = await _context.Profiles.ToListAsync();
+
             return View(await _context.Services.ToListAsync());
         }
 
@@ -48,6 +54,8 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: Services/Create
+        [Authorize] // 👈 add authontication
+
         public IActionResult Create()
         {
             List<SelectListItem> category = _context.Categories.Select(cat => new SelectListItem(){
@@ -64,6 +72,8 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize] // 👈 add authontication
+
         public async Task<IActionResult> Create([Bind("Id,Name,Date,Category,Price,Description,Location,FormFile")] Service service)
         {
             
@@ -78,7 +88,10 @@ namespace Neetechs_MVC.Controllers
             ViewData["SelectCategory"] = service.Category;
 
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var profile = await _context.Profiles.FindAsync(userId);
+
             service.UserId = userId;
+            service.Profile = profile;
 
             if (service.FormFile != null)
             {
@@ -131,6 +144,8 @@ namespace Neetechs_MVC.Controllers
 
 
         // GET: Services/Edit/5
+        [Authorize] // 👈 add authontication
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -151,6 +166,8 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize] // 👈 add authontication
+
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Date,Categorie,Price,Description,Location,FileName,File")] Service service)
         {
             if (id != service.Id)
@@ -182,6 +199,8 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: Services/Delete/5
+        [Authorize] // 👈 add authontication
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

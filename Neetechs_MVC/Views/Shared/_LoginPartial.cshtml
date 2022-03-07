@@ -2,7 +2,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 <style>
-  #notifications,#messages{
+  #notifications,#messages,#Cart{
     overflow-y:scroll;
     height: 80vh;
     width: 360px;
@@ -10,24 +10,29 @@
 </style>
 @if (SignInManager.IsSignedIn(User))
 {
-        <li class="nav-item">
-          <a href="/Profile/Details/@UserManager.GetUserAsync(User).Result.Id" class="d-flex align-items-center text-dark text-decoration-none" >
-            <img src="https://avatars.githubusercontent.com/u/22003531?v=4" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>@UserManager.GetUserAsync(User).Result.</strong>
-          </a>
-        </li>
+        @* Shoping  *@
+        <li class="nav-item dropdown">
+              <button href="#Cart" type="button" class="nav-link btn btn-link text-dark dropdown-toggle" 
+               data-bs-toggle="dropdown" onclick="getCartSession()">
 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+                <span id="cartBadge" class="badge badge-light text-dark"></span>
+              </button>
+              <div id="Cart" class="dropdown-menu dropdown-menu-end">
+              </div>
+        </li>
         @* Notifications *@
         <li class="nav-item dropdown">
-            <button href="#notifications" type="button" class="nav-link btn btn-link text-dark dropdown-toggle" 
-           data-bs-toggle="dropdown">
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <button href="#notifications" type="button" class="nav-link btn btn-link text-dark dropdown-toggle" data-bs-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
             </button>
               <div id="notifications" class="dropdown-menu dropdown-menu-end">
               </div>
         </li>
-
         @* Messages *@
         <li class="nav-item dropdown">
             <button href="#messages" type="button" class="nav-link btn btn-link text-dark" 
@@ -43,20 +48,27 @@
 
         <li class="nav-item dropdown">
             <button type="button"  class="nav-link btn btn-link text-dark" href="#settingButton" 
-           data-bs-toggle="dropdown">
+                data-bs-toggle="dropdown">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
             </button>
               <div class="dropdown-menu dropdown-menu-end" id="settings">
-               
-                        <a  href="/Identity/Account/manage" class="dropdown-item nav-link btn btn-link text-dark">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>                        Manage</a>
-                <button class="dropdown-item" type="button">Another action</button>
-                <button class="dropdown-item" type="button">Something else here</button>
-                    <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button  type="submit" class="dropdown-item nav-link btn btn-link text-dark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                        Logout</button>
-                    </form>
+                  <a href="/Profile/Details/@UserManager.GetUserAsync(User).Result.Id" class="dropdown-item nav-link btn btn-link text-dark">
+                    <img src="https://avatars.githubusercontent.com/u/22003531?v=4" alt="" width="24" height="24" class="rounded-circle me-2">
+                    <strong>@User.Identity?.Name</strong>
+                  </a>
+                  <a  href="/Identity/Account/manage" class="dropdown-item nav-link btn btn-link text-dark">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                      Manage
+                  </a>
+                  <a  href="/Reports" class="dropdown-item nav-link btn btn-link text-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-flag"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>                      
+                    Report                  
+                    </a>
+                  <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                      <button  type="submit" class="dropdown-item nav-link btn btn-link text-dark">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                      Logout</button>
+                  </form>
               </div>
         </li>
       
@@ -75,3 +87,171 @@ else
     </li>
 }
 
+@if (SignInManager.IsSignedIn(User)){
+<script>
+    // calling Notifications
+    $(document).ready( function(){
+         $.ajax({
+                type:'GET',
+                url:'/Notifications/NotificationsTask',
+                success:function(data){
+                    $('#notifications').html(data);
+            }
+
+        }) })
+        // calling Messages
+        $(document).ready( function(){
+
+            $.ajax({
+                type:'GET',
+                url:'/Messages/MessagesTask',
+                success:function(data){
+                    $('#messages').html(data);
+            }
+        }) 
+        
+        })
+        // calling Cart html index
+        $(document).ready( function(){
+         $.ajax({
+                type:'GET',
+                url:'/CartItems/CartItemsTask',
+                success:function(data){
+                    $('#Cart').html(data);
+            }
+
+        }) })
+        // calling Cart Items and filter them
+        $(document).ready( function(){
+          $.ajax({
+                type:"POST",
+                url: "@Url.Action("getCartSession", "CartItems")",
+                // data: { id: id },
+                success: function (response) {
+                    if(response != null){
+                        jsonCartItemsResponse = eval(response)
+                        numberOfCartItems = jsonCartItemsResponse.length
+                        var Total = 0;
+                        var Subtotal = 0;
+                        for (let i = 0; i < numberOfCartItems; i++) {
+                            Subtotal = Total + (jsonCartItemsResponse[i].Product.Price*jsonCartItemsResponse[i].Quantity);
+                        }                       
+                        var Shipping = 0;
+                        console.log("total",Total)
+                        // display the badge
+                        var cartBadge = document.getElementById("cartBadge");
+                        var TotalEl = document.getElementById("Total");
+                        //var SubtotalEl = document.getElementById("Subtotal");
+                        //var ShippingEl = document.getElementById("Shipping");
+                        cartBadge.innerHTML = numberOfCartItems
+                        TotalEl.innerHTML = Total
+                        //SubtotalEl.innerHTML = Subtotal
+                        //ShippingEl.innerHTML = Shipping
+
+                        console.log(numberOfCartItems)
+                        console.log(jsonCartItemsResponse)
+                    }
+                    else{
+                       console.log("Session object not found!")
+
+                    }
+                },
+                failure: function (response) {
+                   console.log(response)
+                },
+                error: function (response) {
+                   console.log(response)
+                }
+            }); 
+        })
+        function getCartSession() {
+            $.ajax({
+                type:"POST",
+                url: "@Url.Action("getCartSession", "CartItems")",
+                // data: { id: id },
+                success: function (response) {
+                    if(response != null){
+                        jsonCartItemsResponse = eval(response)
+                        numberOfCartItems = jsonCartItemsResponse.length
+                        var Total = 0;
+                        var Subtotal = 0;
+                        for (let i = 0; i < numberOfCartItems; i++) {
+                            Subtotal = Total + (jsonCartItemsResponse[i].Product.Price*jsonCartItemsResponse[i].Quantity);
+                        }                       
+                        var Shipping = 0;
+                        console.log("total",Total)
+                        // display the badge
+                        var cartBadge = document.getElementById("cartBadge");
+                        var TotalEl = document.getElementById("Total");
+                        var SubtotalEl = document.getElementById("Subtotal");
+                        var ShippingEl = document.getElementById("Shipping");
+                        cartBadge.innerHTML = numberOfCartItems
+                        TotalEl.innerHTML = Total
+                        SubtotalEl.innerHTML = Subtotal
+                        ShippingEl.innerHTML = Shipping
+
+                        console.log(numberOfCartItems)
+                        console.log(jsonCartItemsResponse)
+                    }
+                    else{
+                       console.log("Session object not found!")
+
+                    }
+                },
+                failure: function (response) {
+                   console.log(response)
+                },
+                error: function (response) {
+                   console.log(response)
+                }
+            }); 
+        }
+        function reloadCart() {
+            //e.preventDefault();
+            // make ajax request
+            console.log(id)
+             $.ajax({
+                type:"POST",
+                url: "@Url.Action("getCartSession", "CartItems")",
+                // data: { id: id },
+                success: function (response) {
+                    jsonCartItemsResponse = eval(response)
+                    numberOfCartItems = jsonCartItemsResponse.length
+                    //Total Subtotal Subtotal
+                    var cartBadge = document.getElementById("cartBadge");
+
+                    cartBadge.innerHTML = numberOfCartItems
+                    var deleteCartEl = document.getElementById("cartNotification");
+
+                    console.log(deleteCartEl)
+                    deleteCartEl.remove();
+                    var mainDiv = document.createElement('div');
+                    mainDiv.setAttribute('id', 'cartNotification');
+                    document.getElementById("notificationCart").appendChild(mainDiv);
+
+                    mainDiv.innerHTML = document.getElementById("blockOfItem").innerHTML;
+
+                    for (let i = 0; i < jsonCartItemsResponse.length; i++) {
+                      text += jsonCartItemsResponse[i] + "<br>";
+                        var div = document.createElement('div');
+                        div.setAttribute('class', 'someClass');
+                        div.innerHTML = document.getElementById("blockOfItem").innerHTML;
+
+                        div.innerHTML = div.innerHTML
+                            .replace(/{id}/g, jsonCartItemsResponse[i].Id)
+                            .replace(/{productId}/g, jsonCartItemsResponse[i].Product.Id)
+                            .replace(/{quantity}/g, jsonCartItemsResponse[i].Quantity)
+                            .replace(/{price}/g, jsonCartItemsResponse[i].Product.Price);
+
+                        document.getElementById('cartNotification').appendChild(div);
+                    }
+
+                    //var deleteFromCartEl = document.getElementById(id);
+
+                    console.log(eval(response))
+                    //
+                }
+            });
+        }
+    </script>
+}

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZjcsAemC+IeeFLbZly04VRfRBQkPG9ArLIZkvueO1dA=",
+  "Hash": "u/vGdErh8bPXf5BQGQOAneVxQSvaLESMGiYaBgZ1h7Q=",
   "Source": "Neetechs_MVC",
   "BasePath": "_content/Neetechs_MVC",
   "Mode": "Default",
@@ -1426,6 +1426,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\icons\\users.svg"
+    },
+    {
+      "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\image\\data.webp",
+      "SourceId": "Neetechs_MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\",
+      "BasePath": "_content/Neetechs_MVC",
+      "RelativePath": "image/data.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\data.webp"
+    },
+    {
+      "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\image\\delete.jpg",
+      "SourceId": "Neetechs_MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\",
+      "BasePath": "_content/Neetechs_MVC",
+      "RelativePath": "image/delete.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\delete.jpg"
     },
     {
       "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\js\\site.js",

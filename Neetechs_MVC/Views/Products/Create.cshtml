@@ -17,11 +17,6 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-@*            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />
@@ -34,10 +29,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Brand" class="control-label"></label>
-@*                <input asp-for="Brand" class="form-control" />
-*@              <select id="brand" onchange="getModels(this)" asp-for="Brand"  asp-items=@ViewBag.SelectBrand class="form-control"></select>
-@*<select id="brand" onchange="getModels(this)" asp-for="Brand"  asp-items=@(List<SelectListItem>)(@ViewData["SelectBrand"]) class="form-control"></select>
-*@                <span asp-validation-for="Brand" class="text-danger"></span>
+              <select id="brand" onchange="getModels(this)" asp-for="Brand"  asp-items=@ViewBag.SelectBrand class="form-control"></select>
+                <span asp-validation-for="Brand" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
@@ -51,8 +44,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="File" class="control-label"></label>
-@*                <input asp-for="File" class="form-control" />
-*@                <img id="formImage" height="200"/>
+                <img id="formImage" height="200"/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

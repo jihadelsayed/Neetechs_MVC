@@ -8,23 +8,36 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Neetechs_MVC.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <style>
+        body{
+            background-color: #f0cd89;
+            /*    
+            background: #f1f2f7;
+            6F8BA4
+            #efbf79
+            42b5d4=blue
+                    background:#eee;    
+
+            */
+            color: #797979;
+            font-family: 'Open Sans', sans-serif;
+            padding: 0px !important;
+            margin: 0px !important;
+            font-size: 13px;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
         .main {
             width: 100%;
+
         /*    float: left;
         */ }
 
-        .leftSide,.col-12 {
-
-        /*    float: left;
-             background: cyan;
-         */   
-             width: 280px!important;
-             margin:0px;
-             position: fixed;
-             left: 0;
-             top:64px;
-        }
+    
         header{
              position: -webkit-sticky; /* Safari */
              position: sticky;
@@ -35,7 +48,6 @@
         .middleSide  {
              width:auto;
              margin:0px;
-             padding-left:280px;
 
         /*      
                      position:auto;
@@ -57,9 +69,23 @@
         */
             width: 280px!important;
             margin:0px;
+            margin-right:-12px;
+
             position: -webkit-sticky; /* Safari */
             position: sticky;
             right:0;
+            background-color: #eee;
+        }
+        .leftSide,.col-12 {
+        /*    float: left;
+             background: cyan;
+         */   
+             width: 280px!important;
+             margin:0px;
+             position: sticky;
+             
+             left: 0px;
+             top:64px;
             background-color: #eee;
         }
         .footer {
@@ -93,8 +119,251 @@
             }
        
         }
-    </style>
+        .btn {
+            border: 2px solid #edf5ff;
+            /*color: #47759d; 
+            background: #50C878;*/
+        
+            color: #023020;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+         .btn:hover {
+        background: #099969;
+         border: 2px solid #ff007a;
+        color: #fff;
+        font-weight: bold;
+        font-size: 14px; 
+        
+        
+        /*          
+        background: #ff007a;
+        margin-right: 10px;
+        */
+        box-shadow: 0px 10px 19px 0px #ff007a66 !important;
+        
+        }
+        ul {
+            margin: 0px;
+            padding: 0px;
+        }
+        ul li {
+            display: inline-block;
+            font-size: 16px;
+            color: #ff007a;
+        }
+        ul li i {
+            margin-right: 5px;
+        }
+    
+        a, h1, h2, h3, h4, h5, h6, p, span {
+            overflow-wrap: break-word;
+        }
+        h5 {
+            font-size: 18px;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: #002691;
+            margin-top: 0px;
+            font-style: normal;
+            font-weight: bold;
+        }
+        .crical {
+            position: absolute;
+            background: #ff007a;
+            right: -66px;
+            bottom: -73px;
+            font-size: 30px;
+            color: #fff;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            padding: 50px;
+        }
+        div a.nav-item.nav-link.active:after {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 15px 15px 0;
+            border-color: transparent #e7015e transparent transparent;
+            position: absolute;
+            left: 0;
+            bottom: -15px;
+            content: '';
+            -o-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+            -webkit-transition: all 0.4s ease;
+            -moz-transition: all 0.4s ease;
+            border-color: transparent #ff007a transparent transparent;
+        }
+        .fix {
+            overflow: hidden;
+        }
+        div a.nav-item.nav-link.active:after {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 15px 15px 0;
+            border-color: transparent #e7015e transparent transparent;
+            position: absolute;
+            left: 0;
+            bottom: -15px;
+            content: '';
+            -o-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+            -webkit-transition: all 0.4s ease;
+            -moz-transition: all 0.4s ease;
+            border-color: transparent #ff007a transparent transparent;
+        }
+        div a.nav-item.nav-link.active {
+            border: none;
+            padding: 18px 25px;
+            color: #47759d;
+            border-radius: 0;
+            background: #fff;
+            position: relative;
+            background: #f5faff;
+        }
+        .nav.nav-tabs {
+            border: none;
+            color: #fff;
+            border-radius: 0;
+            flex-wrap: inherit;
+            padding: 0 30px;
+        }
+        .nav-fill .nav-item {
+            text-align: left;
+            text-transform: uppercase;
+            margin: 0 5px;
+            font-size: 12px;
+            margin-right: 16px;
+        }
 
+    </style>
+    
+    @* alert style *@
+    <style>
+        .alert {
+          border-radius: 0;
+          -webkit-border-radius: 0;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.11);
+          display: table;
+          width: 100%;
+        }
+
+        .alert-white {
+          background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+          border-top-color: #d8d8d8;
+          border-bottom-color: #bdbdbd;
+          border-left-color: #cacaca;
+          border-right-color: #cacaca;
+          color: #404040;
+          padding-left: 61px;
+          position: relative;
+        }
+
+        .alert-white.rounded {
+          border-radius: 3px;
+          -webkit-border-radius: 3px;
+        }
+
+        .alert-white.rounded .icon {
+          border-radius: 3px 0 0 3px;
+          -webkit-border-radius: 3px 0 0 3px;
+        }
+
+        .alert-white .icon {
+          text-align: center;
+          width: 45px;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          border: 1px solid #bdbdbd;
+          padding-top: 15px;
+        }
+
+
+        .alert-white .icon:after {
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+          display: block;
+          content: '';
+          width: 10px;
+          height: 10px;
+          border: 1px solid #bdbdbd;
+          position: absolute;
+          border-left: 0;
+          border-bottom: 0;
+          top: 50%;
+          right: -6px;
+          margin-top: -3px;
+          background: #fff;
+        }
+
+        .alert-white .icon i {
+          font-size: 20px;
+          color: #fff;
+          left: 12px;
+          margin-top: -10px;
+          position: absolute;
+          top: 50%;
+        }
+        /*============ colors ========*/
+        .alert-success {
+          color: #3c763d;
+          background-color: #dff0d8;
+          border-color: #d6e9c6;
+        }
+
+        .alert-white.alert-success .icon, 
+        .alert-white.alert-success .icon:after {
+          border-color: #54a754;
+          background: #60c060;
+        }
+
+        .alert-info {
+          background-color: #d9edf7;
+          border-color: #98cce6;
+          color: #3a87ad;
+        }
+
+        .alert-white.alert-info .icon, 
+        .alert-white.alert-info .icon:after {
+          border-color: #3a8ace;
+          background: #4d90fd;
+        }
+
+
+        .alert-white.alert-warning .icon, 
+        .alert-white.alert-warning .icon:after {
+          border-color: #d68000;
+          background: #fc9700;
+        }
+
+        .alert-warning {
+          background-color: #fcf8e3;
+          border-color: #f1daab;
+          color: #c09853;
+        }
+
+        .alert-danger {
+          background-color: #f2dede;
+          border-color: #e0b1b8;
+          color: #b94a48;
+        }
+
+        .alert-white.alert-danger .icon, 
+        .alert-white.alert-danger .icon:after {
+          border-color: #ca452e;
+          background: #da4932;
+        }
+    </style>
 </head>
 <body>
 
@@ -107,6 +376,9 @@
      <main class="main row">
           <aside id="leftSide" class="leftSide col-12">
                 <partial name="_Sidebar" />
+                <footer class="border-top footer text-muted">
+                    <partial name="_Footer" />
+                </footer>
           </aside>
           <div class="middleSide col">
             <div class="middleSideContainer container">
@@ -115,22 +387,27 @@
           </div>
           <aside class="rightSide border-right col-32">
                 <partial name="_SidebarRight" />
+          
           </aside>
     </main>
 
-    <footer class="border-top footer text-muted">
-        <partial name="_Footer" />
-    </footer>
+
 
 
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+
+    <!-- Select2 JS --> 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-@*    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
-*@    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+   
     <script>
+        // inline the data
         $(document).ready( function(){
             $.ajax({
                 type:'GET',
@@ -140,25 +417,17 @@
             }
 
         }) })
-        $(document).ready( function(){
-         $.ajax({
-                type:'GET',
-                url:'/Notifications/NotificationsTask',
-                success:function(data){
-                    $('#notifications').html(data);
-            }
-
-        }) })
-        $(document).ready( function(){
+        
+                $(document).ready( function(){
 
             $.ajax({
                 type:'GET',
-                url:'/Messages/MessagesTask',
+                url:'/Categories/CategoriesTask',
                 success:function(data){
-                    $('#messages').html(data);
+                    $('#categories').html(data);
             }
         }) })
-    </script>
+</script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

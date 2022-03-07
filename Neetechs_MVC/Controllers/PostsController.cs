@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Dynamic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -26,6 +27,9 @@ namespace Neetechs_MVC.Controllers
         // GET: Posts
         public async Task<IActionResult> Index()
         {
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Services = await _context.Services.ToListAsync();
+            mymodel.Profiles = await _context.Profiles.ToListAsync();
             return View(await _context.Posts.ToListAsync());
         }
 
@@ -77,6 +81,8 @@ namespace Neetechs_MVC.Controllers
             ViewBag.SelectCategory = categories;
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             post.UserId = userId;
+            var profile = await _context.Profiles.FindAsync(userId);
+            post.Profile = profile;
 
             if (post.FormFile != null)
             {

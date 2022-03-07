@@ -3,12 +3,6 @@
 @{
     ViewData["Title"] = "Products List";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <form asp-controler="Products" asp-action="Index">
     <p>Search for brand</p>
     <input type="text" name="search" onkeyup="searchProducts(value)"/>
@@ -17,6 +11,10 @@
 <table id="productSearchTable" class="table">
 
 </table>
+<div class="justify-content-center text-center" style="position: fixed;bottom:0px; right:25%;">
+    <a asp-action="Create" class="btn ">Add Product  +</a>
+</div>
+
 <script>
     window.onload = function (){
         searchProducts()
@@ -33,4 +31,4 @@
 
         })
     }
-</script>
+ </Script>

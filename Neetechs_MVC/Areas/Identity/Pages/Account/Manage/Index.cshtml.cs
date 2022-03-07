@@ -4,6 +4,7 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -73,9 +74,10 @@ namespace Neetechs_MVC.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Text)]
             [Display(Name = "Description")]
             public string Description { get; set; }
+
         }
 
- 
+
         //string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
 

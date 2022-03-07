@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Dynamic;
+
 
 namespace Neetechs_MVC.Controllers
 {
@@ -28,6 +30,10 @@ namespace Neetechs_MVC.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Services = await _context.Services.ToListAsync();
+            mymodel.Profiles = await _context.Profiles.ToListAsync();
+
             return View(await _context.Products.ToListAsync());
         }
         // GET: MyProducts
@@ -92,6 +98,8 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: Products/Create
+        [Authorize] // 👈 add authontication
+
         public IActionResult Create()
         {
             List<SelectListItem> brands = new List<SelectListItem>();
@@ -106,6 +114,8 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize] // 👈 add authontication
+
         public async Task<IActionResult> Create([Bind("Id,Name,Date,Brand,Price,Description,FormFile")] Product product)
         {
             List<SelectListItem> brands = new List<SelectListItem>();
@@ -116,7 +126,8 @@ namespace Neetechs_MVC.Controllers
 
             string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             product.UserId = userId;
-
+            var profile = await _context.Profiles.FindAsync(userId);
+            product.Profile = profile;
             if (product.FormFile != null)
             {
                 byte[] bytes = null;
@@ -166,6 +177,8 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize] // 👈 add authontication
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -186,6 +199,8 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize] // 👈 add authontication
+
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Date,Brand,Price,FileName,File")] Product product)
         {
             if (id != product.Id)
@@ -217,6 +232,8 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize] // 👈 add authontication
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -237,6 +254,8 @@ namespace Neetechs_MVC.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize] // 👈 add authontication
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -244,10 +263,10 @@ namespace Neetechs_MVC.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
         }
+
     }
 }

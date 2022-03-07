@@ -64,42 +64,96 @@
         text-decoration: none !important
     }
 </style>
+    <div class="row">
 
 @foreach (var item in Model) {
-    <div class="row">
         <div class="col-md-4 mt-2">
             <div class="card">
                 <div class="card-body">
                     <div class="card-img-actions">
-                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.File)" class="card-img img-fluid" width="96" height="350" alt=""/>
+                        @if(@item.File != null){
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(@item.File)" class="card-img img-fluid" width="26" height="96" alt=""/>
+                        }
                     </div>
                     <div class="card-body bg-light text-center">
                         <div class="mb-2">
-                            <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">@Html.DisplayFor(modelItem => item.Name)</a> </h6> 
+                            <h6 class="font-weight-semibold mb-2"> <a href="/Products/Details/@item.Id" class="text-default mb-2" data-abc="true">@Html.DisplayFor(modelItem => item.Name)</a> </h6> 
                             <a href="#" class="text-muted" data-abc="true">@Html.DisplayFor(modelItem => item.Brand)</a>
                         </div>
                         <h3 class="mb-0 font-weight-semibold">@Html.DisplayFor(modelItem => item.Price)</h3>
                         <div> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> </div>
                         <div class="text-muted mb-3">34 reviews</div> 
-                        <button type="button" class="btn bg-cart">
-                            <i class="fa fa-cart-plus mr-2"></i> Add to cart
+                            @*                        <button href="@Url.Action("AddtoCart","Home", new {id=@item.Id })" class="btn bg-cart">
+                            Add to Cart
+                        </button>*@
+                        <button type="button" class="filled-button btn bg-cart" onclick="addToCart(@item.Id)">
+
+                            Add to Cart
                         </button>
+        @*                <button type="button" class="filled-button btn bg-cart" onclick="getCartSession()">
+                            getCartSession
+                        </button>*@
                     </div>
                 </div>
             </div>
         </div>
-    </div>
         
-@*                @Html.DisplayFor(modelItem => item.File)
-              @Html.DisplayFor(modelItem => item.FileName)
+                                @*                @Html.DisplayFor(modelItem => item.File)
+                                            @Html.DisplayFor(modelItem => item.FileName)
 
-                @Html.DisplayFor(modelItem => item.UserId)
+                                                @Html.DisplayFor(modelItem => item.UserId)
 
-                @Html.DisplayFor(modelItem => item.Date)
-*@
-                
-
-    
-         
-         
+                                                @Html.DisplayFor(modelItem => item.Date)
+                                *@
 }
+</div>
+
+<script>
+var addToCartUrl = "@Url.Action("AddtoCart", "CartItems")";
+        function addToCart(id) {
+            //e.preventDefault();
+            // make ajax request
+            console.log(id)
+            $.ajax({
+                url: addToCartUrl,
+                data: { id: id },
+                success: function (response) {
+                  jsonCartItemsResponse = eval(response)
+                    numberOfCartItems = jsonCartItemsResponse.length
+                    //Total Subtotal Subtotal
+                    var cartBadge = document.getElementById("cartBadge");
+
+                    cartBadge.innerHTML = numberOfCartItems
+                    var deleteCartEl = document.getElementById("cartNotification");
+
+                    console.log(deleteCartEl)
+                    deleteCartEl.remove();
+                    var mainDiv = document.createElement('div');
+                    mainDiv.setAttribute('id', 'cartNotification');
+                    document.getElementById("notificationCart").appendChild(mainDiv);
+
+                    mainDiv.innerHTML = document.getElementById("blockOfItem").innerHTML;
+
+                    for (let i = 0; i < jsonCartItemsResponse.length; i++) {
+                      text += jsonCartItemsResponse[i] + "<br>";
+                        var div = document.createElement('div');
+                        div.setAttribute('class', 'someClass');
+                        div.innerHTML = document.getElementById("blockOfItem").innerHTML;
+
+                        div.innerHTML = div.innerHTML
+                            .replace(/{id}/g, jsonCartItemsResponse[i].Id)
+                            .replace(/{productId}/g, jsonCartItemsResponse[i].Product.Id)
+                            .replace(/{quantity}/g, jsonCartItemsResponse[i].Quantity)
+                            .replace(/{price}/g, jsonCartItemsResponse[i].Product.Price);
+
+                        document.getElementById('cartNotification').appendChild(div);
+                    }
+
+                    //var deleteFromCartEl = document.getElementById(id);
+
+                    console.log(eval(response))
+                    //
+                }
+            });
+        }
+</script>

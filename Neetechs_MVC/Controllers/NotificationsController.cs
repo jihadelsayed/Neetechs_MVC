@@ -13,6 +13,7 @@ namespace Neetechs_MVC.Controllers
 
     public class NotificationsController : Controller
     {
+        
         public async Task<IActionResult> NotificationsTask()
         {
             return PartialView("_Notifications", await _context.Notifications.ToListAsync());

@@ -12,16 +12,17 @@ namespace Neetechs.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string? UserId { get; set; }
+        public Profile? Profile { get; set; }
+
         public DateTime? AddDate = new DateTime();
         
         public DateTime Date { get; set; }
         public string Description { get; set; }
         //public DateTime StartDate { get; set; }
         //public DateTime EndDate { get; set; }
-        public Profile? Profile { get; set; }
         public string Brand { get; set; }
         public double Price { get; set; }
-
+        public int? Review { get; set; }
         public string? FileName { get; set; }
         public byte[]? File { get; set; }
         [NotMapped]

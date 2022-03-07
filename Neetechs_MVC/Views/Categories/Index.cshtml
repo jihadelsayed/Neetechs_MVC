@@ -1,35 +1,46 @@
 ﻿@model IEnumerable<Neetechs_MVC.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Category";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<style>
+    .card:hover {
+         background: #fff;
+         box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+         border-radius: 4px;
+         transition: all 0.3s ease;
+    }
+</style>
+<div class="row ads">
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    
+    
+    <!-- Category Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-image">
+                     @if(@item.File != null){
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(@item.File)" class="card-img img-fluid" width="26" height="96" alt=""/>
+                     }
+                </div>
+                <div class="card-body text-center">
+                    <a asp-action="Details" class=" btn text-dark" asp-route-id="@item.Id">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </a>
+                        
+
+                    <a asp-action="Edit" asp-route-id="@item.Id" class=" btn  text-dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>                        Edit                  
+                    </a>
+                </div>
+             </div>
+        </div>
+               
+         
 }
-    </tbody>
-</table>
+</div>
+
+<div class="justify-content-center text-center" style="position: fixed;bottom:0px; right:25%;">
+    <a asp-action="Create" class="btn ">Add Category  +</a>
+</div>

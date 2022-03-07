@@ -1,7 +1,10 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,9 +26,14 @@ namespace Neetechs_MVC.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            return View(await _context.Categories.ToListAsync());
         }
 
+        public async Task<IActionResult> CategoriesTask()
+        {
+            return PartialView("_Categories", await _context.Categories.ToListAsync());
+
+        }
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -47,6 +55,13 @@ namespace Neetechs_MVC.Controllers
         // GET: Categories/Create
         public IActionResult Create()
         {
+            List<SelectListItem> category = _context.Categories.Select(cat => new SelectListItem()
+            {
+                Text = cat.Name,
+                Value = cat.Id.ToString()
+            }).ToList<SelectListItem>();
+            //List<SelectListItem> brands = new List<SelectListItem>();
+            ViewBag.SelectCategory = category;
             return View();
         }
 
@@ -55,8 +70,62 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Category category)
+
+        public async Task<IActionResult> Create([Bind("Id,Name,FatherCategory,AddDate,Description,FormFile")] Category category)
         {
+            List<SelectListItem> cat = _context.Categories.Select(cat => new SelectListItem()
+            {
+                Text = cat.Name,
+                Value = cat.Id.ToString()
+            }).ToList<SelectListItem>();
+            //List<SelectListItem> brands = new List<SelectListItem>();
+            ViewBag.SelectCategory = cat;
+            //service.Category = Categorie;
+            ViewData["SelectCategory"] = category.FatherCategory;
+
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            category.UserId = userId;
+            if (category.FormFile != null)
+            {
+                byte[] bytes = null;
+                var img = Image.FromStream(category.FormFile.OpenReadStream());
+                var height = img.Height;
+                var width = img.Width;
+                if (height > 200)
+                {
+                    var retio = 1;
+                    if (height > width)
+                    {
+                        retio = height / width;
+                    }
+                    else
+                    {
+                        retio = width / height;
+                    }
+                    int newHeight = 200;
+                    int newWidth = (int)(200 * retio);
+                    string f = newWidth.GetType().Name;
+                    Bitmap resizeImage = new Bitmap(img, newWidth, newHeight);
+                    using var imageStream = new MemoryStream();
+                    resizeImage.Save(imageStream, ImageFormat.Jpeg);
+                    bytes = imageStream.ToArray();
+
+                }
+                else
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        category.FormFile.CopyTo(ms); // copy to memory stream object
+                        bytes = ms.ToArray();
+
+                    }
+                }
+                category.File = bytes;
+                category.FileName = category.FormFile.FileName;
+            }
+     
+
+   
             if (ModelState.IsValid)
             {
                 _context.Add(category);
@@ -66,9 +135,18 @@ namespace Neetechs_MVC.Controllers
             return View(category);
         }
 
+
         // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            List<SelectListItem> cat = _context.Categories.Select(cat => new SelectListItem()
+            {
+                Text = cat.Name,
+                Value = cat.Id.ToString()
+            }).ToList<SelectListItem>();
+            //List<SelectListItem> brands = new List<SelectListItem>();
+            ViewBag.SelectCategory = cat;
+            //service.Category = Categorie;
             if (id == null)
             {
                 return NotFound();
@@ -79,6 +157,7 @@ namespace Neetechs_MVC.Controllers
             {
                 return NotFound();
             }
+
             return View(category);
         }
 
@@ -87,8 +166,16 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,FatherCategory,AddDate,Description,FormFile")] Category category)
         {
+            List<SelectListItem> cat = _context.Categories.Select(cat => new SelectListItem()
+            {
+                Text = cat.Name,
+                Value = cat.Id.ToString()
+            }).ToList<SelectListItem>();
+            //List<SelectListItem> brands = new List<SelectListItem>();
+            ViewBag.SelectCategory = cat;
+            //service.Category = Categorie;
             if (id != category.Id)
             {
                 return NotFound();
@@ -96,8 +183,10 @@ namespace Neetechs_MVC.Controllers
 
             if (ModelState.IsValid)
             {
+
                 try
                 {
+
                     _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
@@ -124,14 +213,12 @@ namespace Neetechs_MVC.Controllers
             {
                 return NotFound();
             }
-
             var category = await _context.Category
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
                 return NotFound();
             }
-
             return View(category);
         }
 
@@ -145,7 +232,6 @@ namespace Neetechs_MVC.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool CategoryExists(int id)
         {
             return _context.Category.Any(e => e.Id == id);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Neetechs.Model;
 using Neetechs_MVC.Data;
 using Neetechs_MVC.Models;
 
@@ -19,7 +20,6 @@ namespace Neetechs_MVC.Controllers
         {
             _context = context;
         }
-
         // GET: Orders
         public async Task<IActionResult> Index()
         {
@@ -157,5 +157,28 @@ namespace Neetechs_MVC.Controllers
         {
             return _context.Order.Any(e => e.Id == id);
         }
+        public List<CartItem> ShoppingCartItems { get; set; }
+
+        //public void AddItemToCart(Product product)
+        //{
+        //    var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(cart => cart.Product.Id == product.Id);
+
+        //    if (shoppingCartItem == null)
+        //    {
+        //        shoppingCartItem = new CartItem()
+        //        {
+        //            ShoppingCartId = ShoppingCartId,
+        //            Movie = movie,
+        //            Amount = 1
+        //        };
+
+        //        _context.ShoppingCartItems.Add(shoppingCartItem);
+        //    }
+        //    else
+        //    {
+        //        shoppingCartItem.Amount++;
+        //    }
+        //    _context.SaveChanges();
+        //}
     }
 }

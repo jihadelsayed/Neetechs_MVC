@@ -26,10 +26,10 @@ namespace Neetechs_MVC.Controllers
             return View(await _context.Messages.ToListAsync());
         }
         // GET: Messages/MessagesTask
-
+     
         public async Task<IActionResult> MessagesTask()
         {
-            return PartialView("_Messages");
+            return PartialView("_Messages", await _context.Messages.ToListAsync());
 
         }
         // GET: Messages/Details/5

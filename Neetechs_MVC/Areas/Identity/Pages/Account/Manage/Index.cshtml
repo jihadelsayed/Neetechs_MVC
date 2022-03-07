@@ -30,7 +30,7 @@
                 <label asp-for="Input.Profession"></label>
                 <span asp-validation-for="Input.Profession" class="text-danger"></span>
             </div>
-                        <div class="form-floating">
+            <div class="form-floating">
                 <textarea asp-for="Input.Description" class="form-control" autocomplete="Description" aria-required="true" ></textarea>
                 <label asp-for="Input.Description"></label>
                 <span asp-validation-for="Input.Description" class="text-danger"></span>
@@ -42,4 +42,5 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
