@@ -5,7 +5,8 @@ namespace Neetechs_MVC.Models
 {
     public class CartItem
     {
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        
+        public int Id { get; set; } //= Guid.NewGuid().ToString();
         public Product Product { get; set; }
         public int Quantity { get; set; }
     }

@@ -16,22 +16,7 @@ namespace Neetechs_MVC.Models
         [ForeignKey(nameof(UserId))]
         public Profile User { get; set; }
 
-        public List<OrderItem> OrderItems { get; set; }
+        //public List<OrderItem> OrderItem { get; set; }
     }
-    public class OrderItem
-    {
-        [Key]
-        public int Id { get; set; }
 
-        public int Amount { get; set; }
-        public double Price { get; set; }
-
-        [ForeignKey("MovieId")]
-        public int MovieId { get; set; }
-        public Product Product { get; set; }
-
-        [ForeignKey("OrderId")]
-        public int OrderId { get; set; }
-        public Order Order { get; set; }
-    }
 }

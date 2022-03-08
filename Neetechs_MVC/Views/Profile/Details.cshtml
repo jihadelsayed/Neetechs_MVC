@@ -124,7 +124,6 @@
     .dark-color {
         color: #20247b;
     }
-
 </style>
 @* @User.Identity?.Name *@
 <section class="section about-section gray-bg" id="about">
@@ -163,7 +162,33 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="about-avatar">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+                            
+                            @if(@Model.File != null){
+                                <img id="formImage" src="data:image/jpeg;base64,@Convert.ToBase64String(@Model.File)" class="card-img img-thumbnail" style="width:250px" alt=""/>
+                            }else
+                            {
+                                <img id="formImage" src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+                            }
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditProfileImage"> Edit Profile Image </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="EditProfileImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <form class="modal-content" asp-action="AddImage" method="post" enctype="multipart/form-data">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Profile Image</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <input type="file" onchange="getFile(this)" asp-for="FileName" name="FormFile" class="form-control" />
+                            </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <span asp-validation-for="FormFile" class="text-danger"></span>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -197,3 +222,23 @@
                 </div>
             </div>
         </section>
+
+        @section Scripts {
+    <script>
+
+        function getFile(data){
+
+            const image = document.getElementById("formImage");
+            const reader = new FileReader();
+            const file = data.files[0];
+
+            reader.addEventListener("load", function () {
+                image.src = reader.result;
+            }, false);
+
+            reader.readAsDataURL(file);
+        }
+   
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -109,7 +109,7 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Quantity")] CartItem cartItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Quantity")] CartItem cartItem)
         {
             if (id != cartItem.Id)
             {
@@ -140,12 +140,8 @@ namespace Neetechs_MVC.Controllers
         }
 
         // GET: CartItems/Delete/5
-        public async Task<IActionResult> Delete(string? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
             var cartItem = await _context.CartItem
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -168,7 +164,7 @@ namespace Neetechs_MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CartItemExists(string id)
+        private bool CartItemExists(int id)
         {
             return _context.CartItem.Any(e => e.Id == id);
         }
@@ -221,7 +217,7 @@ namespace Neetechs_MVC.Controllers
             return Json(JsonConvert.SerializeObject(cartItems));
          
         }
-        public IActionResult DeleteFromCart(string id)
+        public IActionResult DeleteFromCart(int id)
         {
             cartItems = JsonConvert.DeserializeObject<List<CartItem>>(HttpContext.Session.GetString("CartSession"));
             CartItem cartItem = cartItems.Where(p => p.Id == id).FirstOrDefault();

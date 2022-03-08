@@ -360,38 +360,6 @@ namespace Neetechs_MVC.Migrations
                     b.ToTable("Order");
                 });
 
-            modelBuilder.Entity("Neetechs_MVC.Models.OrderItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderItem");
-                });
-
             modelBuilder.Entity("Neetechs_MVC.Models.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -581,6 +549,12 @@ namespace Neetechs_MVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("File")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -722,25 +696,6 @@ namespace Neetechs_MVC.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Neetechs_MVC.Models.OrderItem", b =>
-                {
-                    b.HasOne("Neetechs_MVC.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Neetechs.Model.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Neetechs_MVC.Models.Post", b =>
                 {
                     b.HasOne("Neetechs_MVC.Models.Profile", "Profile")
@@ -775,11 +730,6 @@ namespace Neetechs_MVC.Migrations
                         .HasForeignKey("ProfileId");
 
                     b.Navigation("Profile");
-                });
-
-            modelBuilder.Entity("Neetechs_MVC.Models.Order", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }
