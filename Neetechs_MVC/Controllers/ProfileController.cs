@@ -152,5 +152,12 @@ namespace Neetechs_MVC.Controllers
                 return View();
             }
         }
+        public async Task<IActionResult> ProfileTask()
+        {
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var findProfile = await _context.Profiles.FindAsync(userId);
+            return Json(findProfile);
+        }
+        
     }
 }

@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+
 <style>
   #notifications,#messages,#Cart{
     overflow-y:scroll;
@@ -35,9 +36,7 @@
         </li>
         @* Messages *@
         <li class="nav-item dropdown">
-            <button href="#messages" type="button" class="nav-link btn btn-link text-dark" 
-           data-bs-toggle="dropdown">
-
+            <button href="#messages" type="button" class="nav-link btn btn-link text-dark" data-bs-toggle="dropdown">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
             </button>
               <div id="messages" class="dropdown-menu dropdown-menu-end">
@@ -53,8 +52,8 @@
             </button>
               <div class="dropdown-menu dropdown-menu-end" id="settings">
                   <a href="/Profile/Details/@UserManager.GetUserAsync(User).Result.Id" class="dropdown-item nav-link btn btn-link text-dark">
-                    <img src="https://avatars.githubusercontent.com/u/22003531?v=4" alt="" width="24" height="24" class="rounded-circle me-2">
-                    <strong>@User.Identity?.Name</strong>
+                        <img id="profileImage" src="" alt="" width="24" height="24" class="rounded-circle me-2">
+                    <strong id="fullName">@User.Identity?.Name</strong>
                   </a>
                   <a  href="/Identity/Account/manage" class="dropdown-item nav-link btn btn-link text-dark">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -89,14 +88,29 @@ else
 
 @if (SignInManager.IsSignedIn(User)){
 <script>
-    // calling Notifications
-    $(document).ready( function(){
+        // calling user data
+        $(document).ready( function(){
          $.ajax({
                 type:'GET',
-                url:'/Notifications/NotificationsTask',
+                url:'/Profile/ProfileTask',
                 success:function(data){
-                    $('#notifications').html(data);
+                    var profileImage = document.getElementById("profileImage");
+                    var fullName = document.getElementById("fullName");
+                    profileImage.src = "data:image/jpeg;base64,"+data.file
+                    fullName.innerHTML = data.fullName
+                    console.log(data)
+                    profileImage
             }
+
+        }) })
+        // calling Notifications
+        $(document).ready( function(){
+             $.ajax({
+                    type:'GET',
+                    url:'/Notifications/NotificationsTask',
+                    success:function(data){
+                        $('#notifications').html(data);
+                }
 
         }) })
         // calling Messages
@@ -121,6 +135,7 @@ else
             }
 
         }) })
+
         // calling Cart Items and filter them
         $(document).ready( function(){
           $.ajax({
