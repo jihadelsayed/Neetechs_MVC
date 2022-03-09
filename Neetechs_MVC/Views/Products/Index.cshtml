@@ -5,7 +5,10 @@
 }
 <form asp-controler="Products" asp-action="Index">
     <p>Search for brand</p>
-    <input type="text" name="search" onkeyup="searchProducts(value)"/>
+    <div class="form-group">
+         <input type="text" class="form-control" placeholder="Search for product" name="search" onkeyup="searchProducts(value)"/>
+
+    </div>
 @*    <input type="submit" name="search" />
 *@</form>
 <article id="productSearchTable" class="table">

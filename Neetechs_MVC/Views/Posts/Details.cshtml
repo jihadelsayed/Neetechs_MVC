@@ -1,691 +1,221 @@
 ﻿@model Neetechs_MVC.Models.Post
 
 @{
-    ViewData["Title"] = "Details";
-}
-<style>
-    .entry-card {
-        -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
-        -moz-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    .entry-content {
-        background-color: #fff;
-        padding: 36px 36px 36px 36px;
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-    }
-
-    .entry-content .entry-title a {
-        color: #333;
-    }
-
-    .entry-content .entry-title a:hover {
-        color: #4782d3;
-    }
-
-    .entry-content .entry-meta span {
-        font-size: 12px;
-    }
-
-    .entry-title {
-        font-size: .95rem;
-        font-weight: 500;
-        margin-bottom: 15px;
-    }
-
-    .entry-thumb {
-        display: block;
-        position: relative;
-        overflow: hidden;
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
-    }
-
-    .entry-thumb img {
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
-    }
-
-    .entry-thumb .thumb-hover {
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        background: rgba(71, 130, 211, 0.85);
-        display: block;
-        top: 50%;
-        left: 50%;
-        color: #fff;
-        font-size: 40px;
-        line-height: 100px;
-        border-radius: 50%;
-        margin-top: -50px;
-        margin-left: -50px;
-        text-align: center;
-        transform: scale(0);
-        -webkit-transform: scale(0);
-        opacity: 0;
-        transition: all .3s ease-in-out;
-        -webkit-transition: all .3s ease-in-out;
-    }
-
-    .entry-thumb:hover .thumb-hover {
-        opacity: 1;
-        transform: scale(1);
-        -webkit-transform: scale(1);
-    }
-
-    .article-post {
-        border-bottom: 1px solid #eee;
-        padding-bottom: 70px;
-    }
-
-    .article-post .post-thumb {
-        display: block;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .article-post .post-thumb .post-overlay {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-        transition: all .3s;
-        -webkit-transition: all .3s;
-        opacity: 0;
-    }
-
-    .article-post .post-thumb .post-overlay span {
-        width: 100%;
-        display: block;
-        vertical-align: middle;
-        text-align: center;
-        transform: translateY(70%);
-        -webkit-transform: translateY(70%);
-        transition: all .3s;
-        -webkit-transition: all .3s;
-        height: 100%;
-        color: #fff;
-    }
-
-    .article-post .post-thumb:hover .post-overlay {
-        opacity: 1;
-    }
-
-    .article-post .post-thumb:hover .post-overlay span {
-        transform: translateY(50%);
-        -webkit-transform: translateY(50%);
-    }
-
-    .post-content .post-title {
-        font-weight: 500;
-    }
-
-    .post-meta {
-        padding-top: 15px;
-        margin-bottom: 20px;
-    }
-
-    .post-meta li:not(:last-child) {
-        margin-right: 10px;
-    }
-
-    .post-meta li a {
-        color: #999;
-        font-size: 13px;
-    }
-
-    .post-meta li a:hover {
-        color: #4782d3;
-    }
-
-    .post-meta li i {
-        margin-right: 5px;
-    }
-
-    .post-meta li:after {
-        margin-top: -5px;
-        content: "/";
-        margin-left: 10px;
-    }
-
-    .post-meta li:last-child:after {
-        display: none;
-    }
-
-    .post-masonry .masonry-title {
-        font-weight: 500;
-    }
-
-    .share-buttons li {
-        vertical-align: middle;
-    }
-
-    .share-buttons li a {
-        margin-right: 0px;
-    }
-
-    .post-content .fa {
-        color: #ddd;
-    }
-
-    .post-content a h2 {
-        font-size: 1.5rem;
-        color: #333;
-        margin-bottom: 0px;
-    }
-
-    .article-post .owl-carousel {
-        margin-bottom: 20px !important;
-    }
-
-    .post-masonry h4 {
-        text-transform: capitalize;
-        font-size: 1rem;
-        font-weight: 700;
-    }
-    .mb40 {
-        margin-bottom: 40px !important;
-    }
-    .mb30 {
-        margin-bottom: 30px !important;
-    }
-    .media-body h5 a {
-        color: #555;
-    }
-    .categories li a:before {
-        content: "\f0da";
-        font-family: 'FontAwesome';
-        margin-right: 5px;
-    }
-    /*
-    Template sidebar
-    */
-
-    .sidebar-title {
-        margin-bottom: 1rem;
-        font-size: 1.1rem;
-    }
-
-    .categories li {
-        vertical-align: middle;
-    }
-
-    .categories li > ul {
-        padding-left: 15px;
-    }
-
-    .categories li > ul > li > a {
-        font-weight: 300;
-    }
-
-    .categories li a {
-        color: #999;
-        position: relative;
-        display: block;
-        padding: 5px 10px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .categories li a:before {
-        content: "\f0da";
-        font-family: 'FontAwesome';
-        margin-right: 5px;
-    }
-
-    .categories li a:hover {
-        color: #444;
-        background-color: #f5f5f5;
-    }
-
-    .categories > li.active > a {
-        font-weight: 600;
-        color: #444;
-    }
-
-    .media-body h5 {
-        font-size: 15px;
-        letter-spacing: 0px;
-        line-height: 20px;
-        font-weight: 400;
-    }
-
-    .media-body h5 a {
-        color: #555;
-    }
-
-    .media-body h5 a:hover {
-        color: #4782d3;
-    }
-</style>
-<style>
-.card {
-    background: #fff;
-    transition: .5s;
-    border: 0;
-    margin-bottom: 30px;
-    border-radius: .55rem;
-    position: relative;
-    width: 100%;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
-}
-.card .body {
-    color: #444;
-    padding: 20px;
-    font-weight: 400;
-}
-.card .header {
-    color: #444;
-    padding: 20px;
-    position: relative;
-    box-shadow: none;
-}
-.single_post {
-    -webkit-transition: all .4s ease;
-    transition: all .4s ease
+	ViewData["Title"] = "Details";
 }
 
-.single_post .body {
-    padding: 30px
-}
-
-.single_post .img-post {
-    position: relative;
-    overflow: hidden;
-    max-height: 500px;
-    margin-bottom: 30px
-}
-
-.single_post .img-post>img {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
-    -webkit-transition: -webkit-transform .4s ease, opacity .4s ease;
-    transition: transform .4s ease, opacity .4s ease;
-    max-width: 100%;
-    filter: none;
-    -webkit-filter: grayscale(0);
-    -webkit-transform: scale(1.01)
-}
-
-.single_post .img-post:hover img {
-    -webkit-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-    transform: scale(1.02);
-    opacity: .7;
-    filter: gray;
-    -webkit-filter: grayscale(1);
-    -webkit-transition: all .8s ease-in-out
-}
-
-.single_post .img-post:hover .social_share {
-    display: block
-}
-
-.single_post .footer {
-    padding: 0 30px 30px 30px
-}
-
-.single_post .footer .actions {
-    display: inline-block
-}
-
-.single_post .footer .stats {
-    cursor: default;
-    list-style: none;
-    padding: 0;
-    display: inline-block;
-    float: right;
-    margin: 0;
-    line-height: 35px
-}
-
-.single_post .footer .stats li {
-    border-left: solid 1px rgba(160, 160, 160, 0.3);
-    display: inline-block;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    line-height: 1;
-    margin: 0 0 0 2em;
-    padding: 0 0 0 2em;
-    text-transform: uppercase;
-    font-size: 13px
-}
-
-.single_post .footer .stats li a {
-    color: #777
-}
-
-.single_post .footer .stats li:first-child {
-    border-left: 0;
-    margin-left: 0;
-    padding-left: 0
-}
-
-.single_post h3 {
-    font-size: 20px;
-    text-transform: uppercase
-}
-
-.single_post h3 a {
-    color: #242424;
-    text-decoration: none
-}
-
-.single_post p {
-    font-size: 16px;
-    line-height: 26px;
-    font-weight: 300;
-    margin: 0
-}
-
-.single_post .blockquote p {
-    margin-top: 0 !important
-}
-
-.single_post .meta {
-    list-style: none;
-    padding: 0;
-    margin: 0
-}
-
-.single_post .meta li {
-    display: inline-block;
-    margin-right: 15px
-}
-
-.single_post .meta li a {
-    font-style: italic;
-    color: #959595;
-    text-decoration: none;
-    font-size: 12px
-}
-
-.single_post .meta li a i {
-    margin-right: 6px;
-    font-size: 12px
-}
-
-.single_post2 {
-    overflow: hidden
-}
-
-.single_post2 .content {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    padding-left: 80px;
-    position: relative
-}
-
-.single_post2 .content .actions_sidebar {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 60px
-}
-
-.single_post2 .content .actions_sidebar a {
-    display: inline-block;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    margin-right: 0;
-    text-align: center;
-    border-right: 1px solid #e4eaec
-}
-
-.single_post2 .content .title {
-    font-weight: 100
-}
-
-.single_post2 .content .text {
-    font-size: 15px
-}
-
-.right-box .categories-clouds li {
-    display: inline-block;
-    margin-bottom: 5px
-}
-
-.right-box .categories-clouds li a {
-    display: block;
-    border: 1px solid;
-    padding: 6px 10px;
-    border-radius: 3px
-}
-
-.right-box .instagram-plugin {
-    overflow: hidden
-}
-
-.right-box .instagram-plugin li {
-    float: left;
-    overflow: hidden;
-    border: 1px solid #fff
-}
-
-.comment-reply li {
-    margin-bottom: 15px
-}
-
-.comment-reply li:last-child {
-    margin-bottom: none
-}
-
-.comment-reply li h5 {
-    font-size: 18px
-}
-
-.comment-reply li p {
-    margin-bottom: 0px;
-    font-size: 15px;
-    color: #777
-}
-
-.comment-reply .list-inline li {
-    display: inline-block;
-    margin: 0;
-    padding-right: 20px
-}
-
-.comment-reply .list-inline li a {
-    font-size: 13px
-}
-
-@@media (max-width: 640px) {
-    .blog-page .left-box .single-comment-box>ul>li {
-        padding: 25px 0
-    }
-    .blog-page .left-box .single-comment-box ul li .icon-box {
-        display: inline-block
-    }
-    .blog-page .left-box .single-comment-box ul li .text-box {
-        display: block;
-        padding-left: 0;
-        margin-top: 10px
-    }
-    .blog-page .single_post .footer .stats {
-        float: none;
-        margin-top: 10px
-    }
-    .blog-page .single_post .body,
-    .blog-page .single_post .footer {
-        padding: 30px
-    }
-}
-</style>
-<div id="main-content" class="blog-page">
-        <div class="container">
-            <div class="row clearfix">
-                    <div class="card single_post">
-                        <div class="body">
-                            <div class="img-post">
-                                <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/87CEFA/000000" alt="First slide">
-                            </div>
-                            <h3><a href="blog-details.html">All photographs are accurate</a></h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        </div>                        
-                    </div>
-                    <div class="card">
-                            <div class="header">
-                                <h2>Comments 3</h2>
-                            </div>
-                            <div class="body">
-                                <ul class="comment-reply list-unstyled">
-                                    <li class="row clearfix">
-                                        <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
-                                        <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                            <h5 class="m-b-0">Gigi Hadid </h5>
-                                            <p>Why are there so many tutorials on how to decouple WordPress? how fast and easy it is to get it running (and keep it running!) and its massive ecosystem. </p>
-                                            <ul class="list-inline">
-                                                <li><a href="javascript:void(0);">Mar 09 2018</a></li>
-                                                <li><a href="javascript:void(0);">Reply</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="row clearfix">
-                                        <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Awesome Image"></div>
-                                        <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                            <h5 class="m-b-0">Christian Louboutin</h5>
-                                            <p>Great tutorial but few issues with it? If i try open post i get following errors. Please can you help me?</p>
-                                            <ul class="list-inline">
-                                                <li><a href="javascript:void(0);">Mar 12 2018</a></li>
-                                                <li><a href="javascript:void(0);">Reply</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="row clearfix">
-                                        <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Awesome Image"></div>
-                                        <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                            <h5 class="m-b-0">Kendall Jenner</h5>
-                                            <p>Very nice and informative article. In all the years I've done small and side-projects as a freelancer, I've ran into a few problems here and there.</p>
-                                            <ul class="list-inline">
-                                                <li><a href="javascript:void(0);">Mar 20 2018</a></li>
-                                                <li><a href="javascript:void(0);">Reply</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>                                        
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="header">
-                                <h2>Leave a reply <small>Your email address will not be published. Required fields are marked*</small></h2>
-                            </div>
-                            <div class="body">
-                                <div class="comment-form">
-                                    <form class="row clearfix">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Your Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Email Address">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>
-                                        </div>                                
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-       
-            </div>
-
-        </div>
-    </div>
-
-<article> 
-  <img src="https://images.unsplash.com/photo-1455734729978-db1ae4f687fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="" class="img-fluid mb30">
-
-	<div class="post-content">
-		<h3>A smart template that works 24/7 for your company</h3>
-		<ul class="post-meta list-inline">
-			<li class="list-inline-item"> <i class="fa fa-user-circle-o"></i> <a href="#">John Doe</a> </li>
-			<li class="list-inline-item"> <i class="fa fa-calendar-o"></i> <a href="#">29 June 2017</a> </li>
-			<li class="list-inline-item"> <i class="fa fa-tags"></i> <a href="#">Bootstrap4</a> </li>
-		</ul>
-		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p>
-		<p class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p>
-		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p>
-		<ul class="list-inline share-buttons">
-			<li class="list-inline-item">Share Post:</li>
-			<li class="list-inline-item">
-				<a href="#" class="social-icon-sm si-dark si-colored-facebook si-gray-round"> <i class="fa fa-facebook"></i> <i class="fa fa-facebook"></i> </a>
-			</li>
-			<li class="list-inline-item">
-				<a href="#" class="social-icon-sm si-dark si-colored-twitter si-gray-round"> <i class="fa fa-twitter"></i> <i class="fa fa-twitter"></i> </a>
-			</li>
-			<li class="list-inline-item">
-				<a href="#" class="social-icon-sm si-dark si-colored-linkedin si-gray-round"> <i class="fa fa-linkedin"></i> <i class="fa fa-linkedin"></i> </a>
-			</li>
-		</ul>
-		<hr class="mb40">
-		<h4 class="mb40 text-uppercase font500">About Author</h4>
-		<div class="media mb40"> <i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i>
-			<div class="media-body">
-				<h5 class="mt-0 font700">Jane Doe</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. </div>
+<div class="row clearfix">
+	<article class="article-comment">
+		<img src="https://images.unsplash.com/photo-1455734729978-db1ae4f687fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+			alt="" class="img-fluid">
+		<div class="post-content">
+			<h3>A smart template that works 24/7 for your company</h3>
+			<ul class="post-meta list-inline">
+				<li class="list-inline-item">
+					<i class="fa fa-user-circle-o"></i>
+					<a href="#">John Doe</a>
+				</li>
+				<li class="list-inline-item">
+					<i class="fa fa-calendar-o"></i>
+					<a href="#">29 June 2017</a>
+				</li>
+				<li class="list-inline-item">
+					<i class="fa fa-tags"></i>
+					<a href="#">Bootstrap4</a>
+				</li>
+			</ul>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+				Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+				ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+				fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,</p>
+			<p class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+				Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+				Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+				Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,</p>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+				Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+				ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+				fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,</p>
+			<ul class="list-inline share-buttons">
+				<li class="list-inline-item">Share Post:</li>
+				<li class="list-inline-item">
+					<a href="#" class="social-icon-sm si-dark si-colored-facebook si-gray-round">
+						<i class="fa fa-facebook"></i>
+						<i class="fa fa-facebook"></i>
+					</a>
+				</li>
+				<li class="list-inline-item">
+					<a href="#" class="social-icon-sm si-dark si-colored-twitter si-gray-round">
+						<i class="fa fa-twitter"></i>
+						<i class="fa fa-twitter"></i>
+					</a>
+				</li>
+				<li class="list-inline-item">
+					<a href="#" class="social-icon-sm si-dark si-colored-linkedin si-gray-round">
+						<i class="fa fa-linkedin"></i>
+						<i class="fa fa-linkedin"></i>
+					</a>
+				</li>
+			</ul>
 		</div>
-		
+	</article>
+	<div class="card article-comment">
+		<h4 class="text-uppercase font500">About Author</h4>
+		<div class="media mb40">
+			<i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i>
+			<div class="media-body">
+				<h5 class="mt-0 font700">Jane Doe</h5>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+				scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+				condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+			</div>
+		</div>
 	</div>
-</article>
+	<div class="card article-comment">
+		<div class="header">
+			<h2>Comments 3</h2>
+		</div>
+		<div class="body">
+			<ul class="comment-reply list-unstyled">
+				<li class="row clearfix">
+					<div class="icon-box col-md-2 col-4">
+						<img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar7.png"
+							alt="Awesome Image">
+					</div>
+					<div class="text-box col-md-10 col-8 p-l-0 p-r0">
+						<h5 class="m-b-0">Gigi Hadid</h5>
+						<p>Why are there so many tutorials on how to decouple WordPress? how fast and easy it is to get
+							it running (and keep it running!) and its massive ecosystem.</p>
+						<ul class="list-inline">
+							<li>
+								<a href="javascript:void(0);">Mar 09 2018</a>
+							</li>
+							<li>
+								<a href="javascript:void(0);">Reply</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="row clearfix">
+					<div class="icon-box col-md-2 col-4">
+						<img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar3.png"
+							alt="Awesome Image">
+					</div>
+					<div class="text-box col-md-10 col-8 p-l-0 p-r0">
+						<h5 class="m-b-0">Christian Louboutin</h5>
+						<p>Great tutorial but few issues with it? If i try open post i get following errors. Please can
+							you help me?</p>
+						<ul class="list-inline">
+							<li>
+								<a href="javascript:void(0);">Mar 12 2018</a>
+							</li>
+							<li>
+								<a href="javascript:void(0);">Reply</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="row clearfix">
+					<div class="icon-box col-md-2 col-4">
+						<img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar4.png"
+							alt="Awesome Image">
+					</div>
+					<div class="text-box col-md-10 col-8 p-l-0 p-r0">
+						<h5 class="m-b-0">Kendall Jenner</h5>
+						<p>Very nice and informative article. In all the years I've done small and side-projects as a
+							freelancer, I've ran into a few problems here and there.</p>
+						<ul class="list-inline">
+							<li>
+								<a href="javascript:void(0);">Mar 20 2018</a>
+							</li>
+							<li>
+								<a href="javascript:void(0);">Reply</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="card contact-form article-comment">
+		<h4>Leave a Reply</h4>
+		<form id="contact-form" method="POST">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<input name="Email" id="email" placeholder="Email *" class="form-control" type="email">
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<textarea name="message" id="message" placeholder="Your message *" rows="4"
+							class="form-control"></textarea>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="send">
+						<button class="px-btn theme">
+							<span>Submit</span>
+							<i class="arrow"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
 
 <div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FileName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FileName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.File)
-        </dt>
-        <dd class = "col-sm-10">
-            @if(@Model.File != null){
-                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(@Model.File)" class="card-img img-fluid" width="26" height="96" alt=""/>
-                }
-        </dd>
-    </dl>
+	<h4>Post</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.UserId)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.UserId)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Category)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Category)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.FileName)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.FileName)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.File)
+		</dt>
+		<dd class="col-sm-10">
+			@if (@Model.File != null)
+			{
+				<img src="data:image/jpeg;base64,@Convert.ToBase64String(@Model.File)" class="card-img img-fluid" width="26"
+				height="96" alt="" />
+			}
+		</dd>
+	</dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+	<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+	<a asp-action="Index">Back to List</a>
 </div>

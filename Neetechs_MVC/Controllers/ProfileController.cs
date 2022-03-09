@@ -5,6 +5,7 @@ using Neetechs_MVC.Data;
 using Neetechs_MVC.Models;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Dynamic;
 using System.Security.Claims;
 
 namespace Neetechs_MVC.Controllers
@@ -18,8 +19,10 @@ namespace Neetechs_MVC.Controllers
             _context = context;
         }
         // GET: ProfileController
-        public ActionResult Index()
+        public async Task<ActionResult> IndexAsync()
         {
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Profiles = await _context.Profiles.ToListAsync();
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace Neetechs_MVC.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
             }
             catch
             {
@@ -106,7 +109,7 @@ namespace Neetechs_MVC.Controllers
             if (ModelState.IsValid)
             {
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
             }
 
             return View(findProfile);
@@ -124,7 +127,7 @@ namespace Neetechs_MVC.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
             }
             catch
             {
@@ -145,7 +148,7 @@ namespace Neetechs_MVC.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
             }
             catch
             {

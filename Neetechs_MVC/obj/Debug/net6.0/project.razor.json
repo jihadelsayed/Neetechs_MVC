@@ -16623,6 +16623,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Posts\\_Search.cshtml",
+      "TargetPath": "Views\\Posts\\_Search.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
       "FileKind": "mvc"

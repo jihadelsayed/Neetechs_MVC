@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "u/vGdErh8bPXf5BQGQOAneVxQSvaLESMGiYaBgZ1h7Q=",
+  "Hash": "J77fvNmhU1EJRvzLMv2TFojBVpSVvc7z0gEvtN3WqLE=",
   "Source": "Neetechs_MVC",
   "BasePath": "_content/Neetechs_MVC",
   "Mode": "Default",
@@ -2463,6 +2463,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\logo.png"
+    },
+    {
+      "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\profile.png",
+      "SourceId": "Neetechs_MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\",
+      "BasePath": "_content/Neetechs_MVC",
+      "RelativePath": "profile.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\profile.png"
     }
   ]
 }

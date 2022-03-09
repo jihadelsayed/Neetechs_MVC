@@ -27,9 +27,7 @@ namespace Neetechs_MVC.Controllers
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-            dynamic mymodel = new ExpandoObject();
-            mymodel.Services = await _context.Services.ToListAsync();
-            mymodel.Profiles = await _context.Profiles.ToListAsync();
+
             return View(await _context.Posts.ToListAsync());
         }
 
@@ -49,6 +47,23 @@ namespace Neetechs_MVC.Controllers
             }
 
             return View(post);
+        }
+        // Search
+        public async Task<IActionResult> Search(string search)
+        {
+            var profiles = await _context.Profiles.ToListAsync();
+            if (string.IsNullOrEmpty(search))
+            {
+                return PartialView("_Search", await _context.Posts.ToListAsync());
+            }
+            else
+            {
+                return PartialView("_Search", await _context.Posts.Where(product =>
+                product.Category.Contains(search)
+                //|| product.Date.ToString().Contains(search)
+                || product.Name.Contains(search)
+                ).ToListAsync());
+            }
         }
 
         // GET: Posts/Create

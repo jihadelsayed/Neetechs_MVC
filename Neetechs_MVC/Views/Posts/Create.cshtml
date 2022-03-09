@@ -8,40 +8,60 @@
 
 <h4>Post</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class=" article-comment">
+    <div class="row">
         <form asp-action="Create" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
             </div>
-            
-           <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                    <select id="Category" onchange="getModels(this)" asp-for="Category"  asp-items=@ViewBag.SelectCategory class="form-control" filter="true"></select>
-                <span asp-validation-for="Category" class="text-danger"></span>
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <label asp-for="Category" class="control-label"></label>
+                    <select id="Category" onchange="getModels(this)" asp-for="Category"
+                        asp-items=@ViewBag.SelectCategory class="form-control"  filter="true"></select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control" ></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="FileName" class="control-label"></label>
-                <input type="file" onchange="getFile(this)" asp-for="FileName" name="FormFile" class="form-control" />
-                <span asp-validation-for="FormFile" class="text-danger"></span>
+
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <label asp-for="FileName" class="control-label"></label>
+                    <input type="file" onchange="getFile(this)" asp-for="FileName" name="FormFile"
+                        class="form-control" />
+                    <span asp-validation-for="FormFile" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="File" class="control-label"></label>
-@*                <input asp-for="File" class="form-control" />
-*@                <img id="formImage" height="200"/>
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <label asp-for="File" class="control-label"></label>
+                    <img id="formImage" height="200" />
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
             </div>
+
         </form>
+
     </div>
 </div>
 
@@ -50,21 +70,21 @@
 </div>
 
 @section Scripts {
-    <script>
+<script>
 
-        function getFile(data){
+    function getFile(data) {
 
-            const image = document.getElementById("formImage");
-            const reader = new FileReader();
-            const file = data.files[0];
+        const image = document.getElementById("formImage");
+        const reader = new FileReader();
+        const file = data.files[0];
 
-            reader.addEventListener("load", function () {
-                image.src = reader.result;
-            }, false);
+        reader.addEventListener("load", function () {
+            image.src = reader.result;
+        }, false);
 
-            reader.readAsDataURL(file);
-        }
-   
-    </script>
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        reader.readAsDataURL(file);
+    }
+
+</script>
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

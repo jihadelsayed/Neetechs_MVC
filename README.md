@@ -56,9 +56,11 @@ The class that I will add to create the website:
     photo
  Messages: Users
  Notification: Users
+ lesson: categorie
+
 Comment 
 ```
-اقمار صناعية
 
 # to do list
 creating shoping page
+
