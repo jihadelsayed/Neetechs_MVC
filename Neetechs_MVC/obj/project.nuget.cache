@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3fLJhSPTB4nzjy1G/yzK/KoPrAOaCJrRLRvSAsqAFrRlxQwTKtS9diwqvsWmOfJq5moBfw6krhCK6Jbe9TF4IA==",
+  "dgSpecHash": "YZbeixXMDc213l8NNNo+9JR5fOeXFtHxj3Ss7cDLObFzUFlCYuv0VdS7amEaHKEmIa98pZercxxkRwvJnyakig==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Neetechs_MVC.csproj",
   "expectedPackageFiles": [
@@ -189,8 +189,7 @@
     "C:\\Users\\david\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\david\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\david\\.nuget\\packages\\tinymce\\6.0.0\\tinymce.6.0.0.nupkg.sha512"
+    "C:\\Users\\david\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }
