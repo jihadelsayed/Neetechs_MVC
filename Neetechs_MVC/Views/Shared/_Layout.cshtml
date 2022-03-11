@@ -12,7 +12,13 @@
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/Neetechs_MVC.styles.css" asp-append-version="true" />
-
+@*	  <script src='https://cdn.tiny.cloud/1/q7mmvesyzvp84xhdfqw24ecysg36uipj9foc2wjo6w3l4puh/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+  </script>*@
+  <script>
+    //tinymce.init({
+    //  selector: '#mytextarea'
+    //});
+  </script>
 	@* style *@
 	<style>
 		body {
@@ -734,7 +740,7 @@
 	</style>
 @*		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 		<script src='https://cdn.tiny.cloud/1/q7mmvesyzvp84xhdfqw24ecysg36uipj9foc2wjo6w3l4puh/tinymce/5/tinymce.min.js' referrerpolicy="origin">
-  *@</script>
+  </script>*@
   <script>
     tinymce.init({
       selector: '#mytextarea'
@@ -801,41 +807,43 @@
 					id: id
 				},
 				success: function (response) {
+					$('#Cart').html(response);
+
 					jsonCartItemsResponse = eval(response)
 					numberOfCartItems = jsonCartItemsResponse.length
 					//Total Subtotal Subtotal
 					var cartBadge = document.getElementById("cartBadge");
-
 					cartBadge.innerHTML = numberOfCartItems
-					var deleteCartEl = document.getElementById("cartNotification");
 
-					console.log(deleteCartEl)
-					deleteCartEl.remove();
-					var mainDiv = document.createElement('div');
-					mainDiv.setAttribute('id', 'cartNotification');
-					document.getElementById("notificationCart").appendChild(mainDiv);
+					//var deleteCartEl = document.getElementById("cartNotification");
 
-					mainDiv.innerHTML = document.getElementById("blockOfItem").innerHTML;
+					//console.log(deleteCartEl)
+					//deleteCartEl.remove();
+					//var mainDiv = document.createElement('div');
+					//mainDiv.setAttribute('id', 'cartNotification');
+					//document.getElementById("notificationCart").appendChild(mainDiv);
 
-					for (let i = 0; i < jsonCartItemsResponse.length; i++) {
-						text += jsonCartItemsResponse[i] + "<br>";
-						var div = document.createElement('div');
-						div.setAttribute('class', 'someClass');
-						div.innerHTML = document.getElementById("blockOfItem").innerHTML;
+					//mainDiv.innerHTML = document.getElementById("blockOfItem").innerHTML;
 
-						div.innerHTML = div.innerHTML
-							.replace(/{id}/g, jsonCartItemsResponse[i].Id)
-							.replace(/{productId}/g, jsonCartItemsResponse[i].Product.Id)
-							.replace(/{quantity}/g, jsonCartItemsResponse[i].Quantity)
-							.replace(/{price}/g, jsonCartItemsResponse[i].Product.Price);
+					//for (let i = 0; i < jsonCartItemsResponse.length; i++) {
+					//	text += jsonCartItemsResponse[i] + "<br>";
+					//	var div = document.createElement('div');
+					//	div.setAttribute('class', 'someClass');
+					//	div.innerHTML = document.getElementById("blockOfItem").innerHTML;
 
-						document.getElementById('cartNotification').appendChild(div);
-					}
+					//	div.innerHTML = div.innerHTML
+					//		.replace(/{id}/g, jsonCartItemsResponse[i].Id)
+					//		.replace(/{productId}/g, jsonCartItemsResponse[i].Product.Id)
+					//		.replace(/{quantity}/g, jsonCartItemsResponse[i].Quantity)
+					//		.replace(/{price}/g, jsonCartItemsResponse[i].Product.Price);
 
-					//var deleteFromCartEl = document.getElementById(id);
+					//	document.getElementById('cartNotification').appendChild(div);
+					//}
 
-					console.log(eval(response))
-					//
+					////var deleteFromCartEl = document.getElementById(id);
+
+					//console.log(eval(response))
+					////
 				}
 			});
 		}

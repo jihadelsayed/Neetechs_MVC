@@ -9,7 +9,7 @@ namespace Neetechs_MVC.Models
         public string? UserId { get; set; }
         public Profile? Profile { get; set; }
         //public IFormFile ProfileImage = Profile.FormFile.FormFile UserId;
-        public DateTime? AddDate = new DateTime();
+        public DateTime? AddDate = DateTime.UtcNow;
 
         public DateTime Date { get; set; }
         public string Category { get; set; }

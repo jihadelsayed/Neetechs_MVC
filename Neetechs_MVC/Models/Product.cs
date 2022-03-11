@@ -15,7 +15,7 @@ namespace Neetechs.Model
         public string? UserId { get; set; }
         public Profile? Profile { get; set; }
 
-        public DateTime? AddDate = new DateTime();
+        public DateTime? AddDate = DateTime.UtcNow;
         
         public DateTime Date { get; set; }
 

@@ -214,6 +214,39 @@ namespace Neetechs_MVC.Controllers
 
             HttpContext.Session.SetString("CartSession", JsonConvert.SerializeObject(cartItems));
 
+            return PartialView("_CartItems", cartItems.ToList());
+        }
+        public IActionResult AddtoCarttttttt(int id)
+        {
+            var cartSession = HttpContext.Session.GetString("CartSession");
+            //check if there is a cartItem 
+            if (cartSession == null)
+            {
+                cartItems = new List<CartItem>();
+            }
+            else
+            {
+                cartItems = JsonConvert.DeserializeObject<List<CartItem>>(HttpContext.Session.GetString("CartSession"));
+            }
+            CartItem cartItem = cartItems.Where(p => p.Product.Id == id).FirstOrDefault();
+            if (cartItem == null)
+            {
+                cartItem = new CartItem();
+                Product product = _context.Products.Where(p => p.Id == id).FirstOrDefault();
+                cartItem.Product = product;
+                cartItem.Quantity = 1;
+                cartItems.Add(cartItem);
+
+            }
+            else
+            {
+                cartItem.Quantity = cartItem.Quantity + 1;
+
+
+            }
+
+            HttpContext.Session.SetString("CartSession", JsonConvert.SerializeObject(cartItems));
+
             return Json(JsonConvert.SerializeObject(cartItems));
          
         }

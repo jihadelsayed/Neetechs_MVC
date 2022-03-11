@@ -16363,6 +16363,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Comments\\Delete.cshtml",
+      "TargetPath": "Views\\Comments\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
       "FileKind": "mvc"
@@ -16375,6 +16380,11 @@
     {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Products\\_ViewImports.cshtml",
       "TargetPath": "Views\\Products\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Comments\\_Comment.cshtml",
+      "TargetPath": "Views\\Comments\\_Comment.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16415,6 +16425,11 @@
     {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Messages\\Delete.cshtml",
       "TargetPath": "Views\\Messages\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Comments\\Edit.cshtml",
+      "TargetPath": "Views\\Comments\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16543,6 +16558,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Comments\\Details.cshtml",
+      "TargetPath": "Views\\Comments\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Lessons\\Create.cshtml",
+      "TargetPath": "Views\\Lessons\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
       "FileKind": "mvc"
@@ -16565,6 +16590,11 @@
     {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Posts\\Create.cshtml",
       "TargetPath": "Views\\Posts\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Lessons\\Edit.cshtml",
+      "TargetPath": "Views\\Lessons\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16633,8 +16663,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Lessons\\Details.cshtml",
+      "TargetPath": "Views\\Lessons\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Areas\\Identity\\Pages\\Error.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Comments\\Create.cshtml",
+      "TargetPath": "Views\\Comments\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16650,6 +16690,11 @@
     {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Lessons\\Delete.cshtml",
+      "TargetPath": "Views\\Lessons\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16763,6 +16808,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Comments\\Index.cshtml",
+      "TargetPath": "Views\\Comments\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
       "FileKind": "mvc"
@@ -16805,6 +16855,11 @@
     {
       "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Services\\Create.cshtml",
       "TargetPath": "Views\\Services\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Views\\Lessons\\Index.cshtml",
+      "TargetPath": "Views\\Lessons\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
