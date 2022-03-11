@@ -55,7 +55,7 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,UserId,ReportCategory,Description,FileName,File")] Report report)
+        public async Task<IActionResult> Create([Bind("Id,Name,UserId,ReportCategory,Description,FormFile")] Report report)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,ReportCategory,Description,FileName,File")] Report report)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,ReportCategory,Description,FormFile")] Report report)
         {
             if (id != report.Id)
             {

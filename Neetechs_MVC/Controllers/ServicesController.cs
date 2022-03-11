@@ -38,6 +38,8 @@ namespace Neetechs_MVC.Controllers
         // GET: Services/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var Profiles = await _context.Profiles.ToListAsync();
+
             if (id == null)
             {
                 return NotFound();
@@ -168,7 +170,7 @@ namespace Neetechs_MVC.Controllers
         [ValidateAntiForgeryToken]
         [Authorize] // 👈 add authontication
 
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Date,Categorie,Price,Description,Location,FileName,File")] Service service)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Date,Categorie,Price,Description,Location,FormFile")] Service service)
         {
             if (id != service.Id)
             {

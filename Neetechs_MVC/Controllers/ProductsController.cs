@@ -79,6 +79,28 @@ namespace Neetechs_MVC.Controllers
                 ).ToListAsync());
             }
         }
+        public async Task<IActionResult> myProducts(string search,string userId)
+        {
+            if (string.IsNullOrEmpty(search))
+            {
+                return PartialView("_Search", await _context.Products.Where(product =>
+                product.Profile.Id == userId
+                || product.Brand.Contains(search)
+                || product.Date.ToString().Contains(search)
+                || product.Name.Contains(search)
+                ).ToListAsync());
+            }
+            else
+            {
+                return PartialView("_Search", await _context.Products.Where(product =>
+                   product.Profile.Id == userId
+                || product.Brand.Contains(search)
+                || product.Date.ToString().Contains(search)
+                || product.Name.Contains(search)
+                ).ToListAsync());
+            }
+        }
+        
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -201,7 +223,7 @@ namespace Neetechs_MVC.Controllers
         [ValidateAntiForgeryToken]
         [Authorize] // 👈 add authontication
 
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Date,Brand,Price,FileName,File")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Date,Brand,Price,FormFile")] Product product)
         {
             if (id != product.Id)
             {

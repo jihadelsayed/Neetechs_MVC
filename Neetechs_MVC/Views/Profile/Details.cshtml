@@ -193,7 +193,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="counter">
+                @*<div class="counter">
                     <div class="row">
                         <div class="col-6 col-lg-3">
                             <div class="count-data text-center">
@@ -220,13 +220,37 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
+
+
+
+
         </section>
-
-        @section Scripts {
+            <article>
+                <h2> @Html.DisplayFor(model => model.FullName)'s Products: </h2>
+                <div id="productSearchTable" class="table"></div>
+            </article>
+@section Scripts {
     <script>
+        window.onload = function (){
 
+          
+            myProducts()
+        }
+        function myProducts(value){
+            var userId = window.location.pathname.split("/").pop()
+            $.ajax({
+                type:'GET',
+                url:'/Products/myProducts/',
+                data:{"search": value,"userId": userId},
+                dataType:'text',
+                success:function(data){
+                    $('#productSearchTable').html(data);
+                }
+
+            })
+        }
         function getFile(data){
 
             const image = document.getElementById("formImage");

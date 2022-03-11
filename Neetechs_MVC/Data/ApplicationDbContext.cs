@@ -25,5 +25,7 @@ namespace Neetechs_MVC.Data
         public DbSet<Neetechs_MVC.Models.Order> Order { get; set; }
         public DbSet<Neetechs_MVC.Models.Report> Report { get; set; }
         public DbSet<Neetechs_MVC.Models.CartItem> CartItem { get; set; }
+        public DbSet<Neetechs_MVC.Models.Comment> Comment { get; set; }
+        public DbSet<Neetechs_MVC.Models.Lesson> Lesson { get; set; }
     }
 }

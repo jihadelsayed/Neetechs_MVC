@@ -2,20 +2,41 @@
 
 @{
     ViewData["Title"] = "Details";
-}
-		<article class="article">
+}    <div class="d-flex justify-content-center row">
+
+		<article class="article col-8">
 			<div class="article-img"> <img src="https://via.placeholder.com/800x350/87CEFA/000000" title="" alt=""> </div>
 			<div class="article-title">
-				<h6><a href="#">Lifestyle</a></h6>
-				<h2>They Now Bade Farewell To The Kind But Unseen People</h2>
+				@*<h6><a href="#">Lifestyle</a></h6>@Html.DisplayFor(model => model.UserId)
+				*@<h2>@Html.DisplayFor(model => model.Name)</h2>
 				<div class="media">
-					<div class="avatar"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt=""> </div>
-					<div class="media-body">
-						<label>Rachel Roth</label> <span>26 FEB 2020</span> </div>
-				</div>
+					    <div class="avatar"> 
+                                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
+
+                            @if (@Model?.Profile.File != null){
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(@Model.Profile.File)" alt="User Image" >
+                            }
+                            else{
+                                <img src="~/profile.png" alt="User Image" >
+                            }
+                        
+                        </div>
+					    <div class="media-body" href="/Profile/Details/@Model.UserId">
+						    <label>@Html.DisplayFor(modelItem => Model.Profile.FullName)</label>
+                            <span>@Html.DisplayFor(modelItem => Model.Date)</span> 
+                            <span>@Html.DisplayFor(model => model.Category)</span> 
+                            <span>@Html.DisplayFor(model => model.Price)</span> 
+                            <span>@Html.DisplayFor(model => model.Location)</span>            
+                        </div>
+                        
+				    </div>
 			</div>
 			<div class="article-content">
-				<p>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. Venenatis eget adipiscing luctus lorem. Adipiscing veni amet luctus enim sem libero tellus viverra venenatis aliquam. Commodo natoque quam pulvinar elit.</p>
+
+                           <img src="data:image/jpeg;base64,@Convert.ToBase64String(@Model.File)" class="card-img img-fluid" width="26" height="96" alt=""/>
+
+                <p>@Html.DisplayFor(modelItem => Model.Description)</p>
+				@*<p>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. Venenatis eget adipiscing luctus lorem. Adipiscing veni amet luctus enim sem libero tellus viverra venenatis aliquam. Commodo natoque quam pulvinar elit.</p>
 				<p>Eget aenean tellus venenatis. Donec odio tempus. Felis arcu pretium metus nullam quam aenean sociis quis sem neque vici libero. Venenatis nullam fringilla pretium magnis aliquam nunc vulputate integer augue ultricies cras. Eget viverra feugiat cras ut. Sit natoque montes tempus ligula eget vitae pede rhoncus maecenas consectetuer commodo condimentum aenean.</p>
 				<h4>What are my payment options?</h4>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -24,101 +45,11 @@
 					<p class="blockquote-footer">Someone famous in <cite title="Source Title">Dick Grayson</cite></p>
 				</blockquote>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
-			<div class="nav tag-cloud"> <a href="#">Design</a> <a href="#">Development</a> <a href="#">Travel</a> <a href="#">Web Design</a> <a href="#">Marketing</a> <a href="#">Research</a> <a href="#">Managment</a> </div>
+			*@</div>
+		@*	<div class="nav tag-cloud"> 
+                <a href="#">Design</a> <a href="#">Development</a> <a href="#">Travel</a> <a href="#">Web Design</a> <a href="#">Marketing</a> <a href="#">Research</a> <a href="#">Managment</a> 
+                
+            </div>*@
 		</article>
 
-
-<div>
-    <h4>Service</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FileName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FileName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.File)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.File)
-           <img src="data:image/jpeg;base64,@Convert.ToBase64String(@Model.File)" class="card-img img-fluid" width="26" height="96" alt=""/>
-
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-<div class="container mt-5">
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-8">
-            <div class="d-flex flex-column comment-section">
-                <div class="bg-white p-2">
-                    <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
-                        <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">Marry Andrews</span><span class="date text-black-50">Shared publicly - Jan 2020</span></div>
-                    </div>
-                    <div class="mt-2">
-                        <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                </div>
-                <div class="bg-white">
-                    <div class="d-flex flex-row fs-12">
-                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
-                        <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
-                        <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
-                    </div>
-                </div>
-                <div class="bg-light p-2">
-                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
-                    <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

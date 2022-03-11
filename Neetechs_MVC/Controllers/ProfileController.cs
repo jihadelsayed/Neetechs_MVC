@@ -109,10 +109,10 @@ namespace Neetechs_MVC.Controllers
             if (ModelState.IsValid)
             {
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(IndexAsync));
+                return Json(findProfile);
             }
 
-            return View(findProfile);
+            return Json(findProfile);
         }
         // GET: ProfileController/Edit/5
         public ActionResult Edit(int id)

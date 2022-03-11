@@ -3,6 +3,7 @@ using Neetechs_MVC.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace Neetechs.Model
 {
     public class Product
@@ -17,7 +18,8 @@ namespace Neetechs.Model
         public DateTime? AddDate = new DateTime();
         
         public DateTime Date { get; set; }
-        public string Description { get; set; }
+
+        public string? Description { get; set; }
         //public DateTime StartDate { get; set; }
         //public DateTime EndDate { get; set; }
         public string Brand { get; set; }

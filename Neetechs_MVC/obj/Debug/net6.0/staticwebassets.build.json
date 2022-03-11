@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "J77fvNmhU1EJRvzLMv2TFojBVpSVvc7z0gEvtN3WqLE=",
+  "Hash": "D6TK9Dfz/oUQ4byvEldUG4zYuCCnnE4a11ktaycVD+k=",
   "Source": "Neetechs_MVC",
   "BasePath": "_content/Neetechs_MVC",
   "Mode": "Default",
@@ -2446,6 +2446,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\lib\\ModelList.json",
+      "SourceId": "Neetechs_MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\",
+      "BasePath": "_content/Neetechs_MVC",
+      "RelativePath": "lib/ModelList.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\ModelList.json"
     },
     {
       "Identity": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\wwwroot\\logo.png",

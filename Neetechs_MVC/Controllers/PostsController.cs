@@ -66,6 +66,7 @@ namespace Neetechs_MVC.Controllers
             }
         }
 
+
         // GET: Posts/Create
         public IActionResult Create()
         {
@@ -168,7 +169,7 @@ namespace Neetechs_MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Categorie,Description,FileName,File")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Categorie,Description,FormFile")] Post post)
         {
             if (id != post.Id)
             {

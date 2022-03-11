@@ -6,28 +6,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Neetechs.Model;
 using Neetechs_MVC.Data;
 using Neetechs_MVC.Models;
 
 namespace Neetechs_MVC.Controllers
 {
-    public class OrdersController : Controller
+    public class LessonsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public OrdersController(ApplicationDbContext context)
+        public LessonsController(ApplicationDbContext context)
         {
             _context = context;
         }
-        // GET: Orders
+
+        // GET: Lessons
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Order.Include(o => o.User);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Lesson.ToListAsync());
         }
 
-        // GET: Orders/Details/5
+        // GET: Lessons/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,42 +34,39 @@ namespace Neetechs_MVC.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order
-                .Include(o => o.User)
+            var lesson = await _context.Lesson
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (order == null)
+            if (lesson == null)
             {
                 return NotFound();
             }
 
-            return View(order);
+            return View(lesson);
         }
 
-        // GET: Orders/Create
+        // GET: Lessons/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Profiles, "Id", "Id");
             return View();
         }
 
-        // POST: Orders/Create
+        // POST: Lessons/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,UserId")] Models.Order order)
+        public async Task<IActionResult> Create([Bind("Id,Name,UserId,Category,DescriptionFormFile")] Lesson lesson)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(order);
+                _context.Add(lesson);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Profiles, "Id", "Id", order.UserId);
-            return View(order);
+            return View(lesson);
         }
 
-        // GET: Orders/Edit/5
+        // GET: Lessons/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,23 +74,22 @@ namespace Neetechs_MVC.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order.FindAsync(id);
-            if (order == null)
+            var lesson = await _context.Lesson.FindAsync(id);
+            if (lesson == null)
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Profiles, "Id", "Id", order.UserId);
-            return View(order);
+            return View(lesson);
         }
 
-        // POST: Orders/Edit/5
+        // POST: Lessons/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,UserId")] Models.Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserId,Category,Description,FormFile")] Lesson lesson)
         {
-            if (id != order.Id)
+            if (id != lesson.Id)
             {
                 return NotFound();
             }
@@ -103,12 +98,12 @@ namespace Neetechs_MVC.Controllers
             {
                 try
                 {
-                    _context.Update(order);
+                    _context.Update(lesson);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OrderExists(order.Id))
+                    if (!LessonExists(lesson.Id))
                     {
                         return NotFound();
                     }
@@ -119,11 +114,10 @@ namespace Neetechs_MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Profiles, "Id", "Id", order.UserId);
-            return View(order);
+            return View(lesson);
         }
 
-        // GET: Orders/Delete/5
+        // GET: Lessons/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,56 +125,30 @@ namespace Neetechs_MVC.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order
-                .Include(o => o.User)
+            var lesson = await _context.Lesson
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (order == null)
+            if (lesson == null)
             {
                 return NotFound();
             }
 
-            return View(order);
+            return View(lesson);
         }
 
-        // POST: Orders/Delete/5
+        // POST: Lessons/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var order = await _context.Order.FindAsync(id);
-            _context.Order.Remove(order);
+            var lesson = await _context.Lesson.FindAsync(id);
+            _context.Lesson.Remove(lesson);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool OrderExists(int id)
+        private bool LessonExists(int id)
         {
-            return _context.Order.Any(e => e.Id == id);
+            return _context.Lesson.Any(e => e.Id == id);
         }
-        public List<CartItem> ShoppingCartItems { get; set; }
-
-        //public void AddItemToCart(Product product)
-        //{
-        //    var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(cart => cart.Product.Id == product.Id);
-
-        //    if (shoppingCartItem == null)
-        //    {
-        //        shoppingCartItem = new CartItem()
-        //        {
-        //            ShoppingCartId = ShoppingCartId,
-        //            Movie = movie,
-        //            Amount = 1
-        //        };
-
-        //        _context.ShoppingCartItems.Add(shoppingCartItem);
-        //    }
-        //    else
-        //    {
-        //        shoppingCartItem.Amount++;
-        //    }
-        //    _context.SaveChanges();
-        //}
- 
-
     }
 }
