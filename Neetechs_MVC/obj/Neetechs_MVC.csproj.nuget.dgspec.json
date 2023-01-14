@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Neetechs_MVC.csproj": {}
+    "C:\\Users\\david\\Documents\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Neetechs_MVC.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Neetechs_MVC.csproj": {
+    "C:\\Users\\david\\Documents\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Neetechs_MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Neetechs_MVC.csproj",
+        "projectUniqueName": "C:\\Users\\david\\Documents\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Neetechs_MVC.csproj",
         "projectName": "Neetechs_MVC",
-        "projectPath": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Neetechs_MVC.csproj",
+        "projectPath": "C:\\Users\\david\\Documents\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\Neetechs_MVC.csproj",
         "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\obj\\",
+        "outputPath": "C:\\Users\\david\\Documents\\GitHub\\Neetechs_MVC\\Neetechs_MVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -93,7 +94,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -105,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

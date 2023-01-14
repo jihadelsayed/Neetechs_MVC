@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Neetechs_MVC.props" />
+</Project>
