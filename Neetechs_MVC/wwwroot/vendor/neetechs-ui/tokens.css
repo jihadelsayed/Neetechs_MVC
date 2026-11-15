@@ -1,0 +1,435 @@
+/* Generated from @neetechs/ui@0.2.0 tokens.css; run npm run ui:sync to refresh. */
+/* --- color.css --- */
+:root {
+  /* Neutral */
+  --nt-color-white: #ffffff;
+  --nt-color-black: #000000;
+
+  --nt-color-gray-50: #f8fafc;
+  --nt-color-gray-100: #f1f5f9;
+  --nt-color-gray-200: #e2e8f0;
+  --nt-color-gray-300: #cbd5e1;
+  --nt-color-gray-400: #94a3b8;
+  --nt-color-gray-500: #64748b;
+  --nt-color-gray-600: #475569;
+  --nt-color-gray-700: #334155;
+  --nt-color-gray-800: #1e293b;
+  --nt-color-gray-850: #172033;
+  --nt-color-gray-900: #0f172a;
+  --nt-color-gray-925: #0b1120;
+  --nt-color-gray-950: #020617;
+
+  /* Neetechs signature colors. Blue is the product accent; lavender denotes AI. */
+  --nt-color-brand-blue: #528ef5;
+  --nt-color-brand-blue-hover: #76abff;
+  --nt-color-brand-blue-active: #3b82f6;
+  --nt-color-ai-lavender: #a78bfa;
+
+  /* Brand / Accent */
+  --nt-color-orange-50: #fff7ed;
+  --nt-color-orange-100: #ffedd5;
+  --nt-color-orange-200: #fed7aa;
+  --nt-color-orange-300: #fdba74;
+  --nt-color-orange-400: #fb923c;
+  --nt-color-orange-500: #f97316;
+  --nt-color-orange-600: #ea580c;
+  --nt-color-orange-700: #c2410c;
+  --nt-color-orange-800: #9a3412;
+  --nt-color-orange-900: #7c2d12;
+  --nt-color-orange-950: #431407;
+
+  /* Blue */
+  --nt-color-blue-50: #eff6ff;
+  --nt-color-blue-100: #dbeafe;
+  --nt-color-blue-200: #bfdbfe;
+  --nt-color-blue-300: #93c5fd;
+  --nt-color-blue-400: #60a5fa;
+  --nt-color-blue-500: #3b82f6;
+  --nt-color-blue-600: #2563eb;
+  --nt-color-blue-700: #1d4ed8;
+  --nt-color-blue-800: #1e40af;
+  --nt-color-blue-900: #1e3a8a;
+  --nt-color-blue-950: #172554;
+
+  /* Green */
+  --nt-color-green-50: #f0fdf4;
+  --nt-color-green-100: #dcfce7;
+  --nt-color-green-200: #bbf7d0;
+  --nt-color-green-300: #86efac;
+  --nt-color-green-400: #4ade80;
+  --nt-color-green-500: #22c55e;
+  --nt-color-green-600: #16a34a;
+  --nt-color-green-700: #15803d;
+  --nt-color-green-800: #166534;
+  --nt-color-green-900: #14532d;
+  --nt-color-green-950: #052e16;
+
+  /* Yellow */
+  --nt-color-yellow-50: #fefce8;
+  --nt-color-yellow-100: #fef9c3;
+  --nt-color-yellow-200: #fef08a;
+  --nt-color-yellow-300: #fde047;
+  --nt-color-yellow-400: #facc15;
+  --nt-color-yellow-500: #eab308;
+  --nt-color-yellow-600: #ca8a04;
+  --nt-color-yellow-700: #a16207;
+  --nt-color-yellow-800: #854d0e;
+  --nt-color-yellow-900: #713f12;
+  --nt-color-yellow-950: #422006;
+
+  /* Red */
+  --nt-color-red-50: #fef2f2;
+  --nt-color-red-100: #fee2e2;
+  --nt-color-red-200: #fecaca;
+  --nt-color-red-300: #fca5a5;
+  --nt-color-red-400: #f87171;
+  --nt-color-red-500: #ef4444;
+  --nt-color-red-600: #dc2626;
+  --nt-color-red-700: #b91c1c;
+  --nt-color-red-800: #991b1b;
+  --nt-color-red-900: #7f1d1d;
+  --nt-color-red-950: #450a0a;
+
+  /* Purple / AI */
+  --nt-color-purple-50: #faf5ff;
+  --nt-color-purple-100: #f3e8ff;
+  --nt-color-purple-200: #e9d5ff;
+  --nt-color-purple-300: #d8b4fe;
+  --nt-color-purple-400: #c084fc;
+  --nt-color-purple-500: #a855f7;
+  --nt-color-purple-600: #9333ea;
+  --nt-color-purple-700: #7e22ce;
+  --nt-color-purple-800: #6b21a8;
+  --nt-color-purple-900: #581c87;
+  --nt-color-purple-950: #3b0764;
+}
+
+/* --- spacing.css --- */
+:root {
+  --nt-space-0: 0;
+  --nt-space-px: 1px;
+
+  --nt-space-0-5: 0.125rem; /* 2px */
+  --nt-space-1: 0.25rem;    /* 4px */
+  --nt-space-1-5: 0.375rem; /* 6px */
+  --nt-space-2: 0.5rem;     /* 8px */
+  --nt-space-2-5: 0.625rem; /* 10px */
+  --nt-space-3: 0.75rem;    /* 12px */
+  --nt-space-3-5: 0.875rem; /* 14px */
+  --nt-space-4: 1rem;       /* 16px */
+  --nt-space-5: 1.25rem;    /* 20px */
+  --nt-space-6: 1.5rem;     /* 24px */
+  --nt-space-7: 1.75rem;    /* 28px */
+  --nt-space-8: 2rem;       /* 32px */
+  --nt-space-10: 2.5rem;    /* 40px */
+  --nt-space-12: 3rem;      /* 48px */
+  --nt-space-14: 3.5rem;    /* 56px */
+  --nt-space-16: 4rem;      /* 64px */
+  --nt-space-20: 5rem;      /* 80px */
+  --nt-space-24: 6rem;      /* 96px */
+  --nt-space-28: 7rem;      /* 112px */
+  --nt-space-32: 8rem;      /* 128px */
+
+  --nt-control-height-xs: var(--nt-density-control-height-xs);
+  --nt-control-height-sm: var(--nt-density-control-height-sm);
+  --nt-control-height-md: var(--nt-density-control-height-md);
+  --nt-control-height-lg: var(--nt-density-control-height-lg);
+  --nt-control-height-xl: var(--nt-density-control-height-xl);
+
+  --nt-icon-size-xs: 0.75rem;
+  --nt-icon-size-sm: 1rem;
+  --nt-icon-size-md: 1.25rem;
+  --nt-icon-size-lg: 1.5rem;
+  --nt-icon-size-xl: 2rem;
+
+  --nt-sidebar-width: 16rem;
+  --nt-sidebar-width-collapsed: 4.5rem;
+  --nt-header-height: 4rem;
+  --nt-content-max-width: 90rem;
+
+  --nt-page-padding-sm: var(--nt-space-4);
+  --nt-page-padding-md: var(--nt-space-6);
+  --nt-page-padding-lg: var(--nt-space-8);
+
+  --nt-grid-gap-sm: var(--nt-space-3);
+  --nt-grid-gap-md: var(--nt-space-4);
+  --nt-grid-gap-lg: var(--nt-space-6);
+
+  --nt-focus-ring-width: 0.125rem;
+  --nt-focus-ring-offset: 0.125rem;
+  --nt-target-size-primary: 2.75rem;
+  --nt-target-size-default: 2.5rem;
+  --nt-target-size-compact: 2.5rem;
+}
+
+/* --- radius.css --- */
+:root {
+  --nt-radius-none: 0;
+  --nt-radius-xs: 0.125rem;  /* 2px */
+  --nt-radius-sm: 0.25rem;   /* 4px */
+  --nt-radius-md: 0.5rem;    /* 8px */
+  --nt-radius-lg: 0.75rem;   /* 12px */
+  --nt-radius-xl: 1rem;      /* 16px */
+  --nt-radius-2xl: 1.25rem;  /* 20px */
+  --nt-radius-3xl: 1.5rem;   /* 24px */
+  --nt-radius-full: 9999px;
+
+  --nt-radius-control: var(--nt-radius-md);
+  --nt-radius-button: var(--nt-radius-md);
+  --nt-radius-input: var(--nt-radius-md);
+  --nt-radius-card: var(--nt-radius-xl);
+  --nt-radius-panel: var(--nt-radius-xl);
+  --nt-radius-dialog: var(--nt-radius-2xl);
+  --nt-radius-drawer: var(--nt-radius-2xl);
+  --nt-radius-badge: var(--nt-radius-full);
+  --nt-radius-avatar: var(--nt-radius-full);
+  --nt-radius-indicator: var(--nt-radius-sm);
+  --nt-radius-item: var(--nt-radius-lg);
+  --nt-radius-popover: var(--nt-radius-xl);
+  --nt-radius-toast: var(--nt-radius-xl);
+  --nt-radius-pill: var(--nt-radius-full);
+}
+
+/* --- typography.css --- */
+:root {
+  --nt-font-sans: Inter, "Noto Sans Arabic", "Noto Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --nt-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --nt-font-weight-regular: 400;
+  --nt-font-weight-medium: 500;
+  --nt-font-weight-semibold: 600;
+  --nt-font-weight-bold: 700;
+
+  --nt-font-size-display-lg: 3.5rem;
+  --nt-font-size-display-md: 3rem;
+  --nt-font-size-display-sm: 2.5rem;
+
+  --nt-font-size-heading-lg: 2rem;
+  --nt-font-size-heading-md: 1.75rem;
+  --nt-font-size-heading-sm: 1.5rem;
+
+  --nt-font-size-title-lg: 1.25rem;
+  --nt-font-size-title-md: 1.125rem;
+  --nt-font-size-title-sm: 1rem;
+
+  --nt-font-size-body-lg: 1rem;
+  --nt-font-size-body-md: 0.9375rem;
+  --nt-font-size-body-sm: 0.875rem;
+  --nt-font-size-body-xs: 0.8125rem;
+
+  --nt-font-size-label-lg: 0.875rem;
+  --nt-font-size-label-md: 0.8125rem;
+  --nt-font-size-label-sm: 0.75rem;
+
+  --nt-font-size-caption: 0.75rem;
+  --nt-font-size-micro: 0.6875rem;
+
+  --nt-line-height-display-lg: 1.05;
+  --nt-line-height-display-md: 1.08;
+  --nt-line-height-display-sm: 1.1;
+
+  --nt-line-height-heading-lg: 1.15;
+  --nt-line-height-heading-md: 1.2;
+  --nt-line-height-heading-sm: 1.25;
+
+  --nt-line-height-title-lg: 1.3;
+  --nt-line-height-title-md: 1.35;
+  --nt-line-height-title-sm: 1.4;
+
+  --nt-line-height-body-lg: 1.6;
+  --nt-line-height-body-md: 1.55;
+  --nt-line-height-body-sm: 1.5;
+  --nt-line-height-body-xs: 1.45;
+
+  --nt-line-height-label: 1.25;
+  --nt-line-height-caption: 1.35;
+
+  --nt-letter-spacing-tight: -0.03em;
+  --nt-letter-spacing-heading: -0.02em;
+  --nt-letter-spacing-title: -0.01em;
+  --nt-letter-spacing-normal: 0;
+  --nt-letter-spacing-label: 0.01em;
+  --nt-letter-spacing-wide: 0.04em;
+
+  --nt-text-display-lg: var(--nt-font-weight-bold) var(--nt-font-size-display-lg) / var(--nt-line-height-display-lg) var(--nt-font-sans);
+  --nt-text-display-md: var(--nt-font-weight-bold) var(--nt-font-size-display-md) / var(--nt-line-height-display-md) var(--nt-font-sans);
+  --nt-text-display-sm: var(--nt-font-weight-bold) var(--nt-font-size-display-sm) / var(--nt-line-height-display-sm) var(--nt-font-sans);
+
+  --nt-text-heading-lg: var(--nt-font-weight-semibold) var(--nt-font-size-heading-lg) / var(--nt-line-height-heading-lg) var(--nt-font-sans);
+  --nt-text-heading-md: var(--nt-font-weight-semibold) var(--nt-font-size-heading-md) / var(--nt-line-height-heading-md) var(--nt-font-sans);
+  --nt-text-heading-sm: var(--nt-font-weight-semibold) var(--nt-font-size-heading-sm) / var(--nt-line-height-heading-sm) var(--nt-font-sans);
+
+  --nt-text-title-lg: var(--nt-font-weight-semibold) var(--nt-font-size-title-lg) / var(--nt-line-height-title-lg) var(--nt-font-sans);
+  --nt-text-title-md: var(--nt-font-weight-semibold) var(--nt-font-size-title-md) / var(--nt-line-height-title-md) var(--nt-font-sans);
+  --nt-text-title-sm: var(--nt-font-weight-semibold) var(--nt-font-size-title-sm) / var(--nt-line-height-title-sm) var(--nt-font-sans);
+
+  --nt-text-body-lg: var(--nt-font-weight-regular) var(--nt-font-size-body-lg) / var(--nt-line-height-body-lg) var(--nt-font-sans);
+  --nt-text-body-md: var(--nt-font-weight-regular) var(--nt-font-size-body-md) / var(--nt-line-height-body-md) var(--nt-font-sans);
+  --nt-text-body-sm: var(--nt-font-weight-regular) var(--nt-font-size-body-sm) / var(--nt-line-height-body-sm) var(--nt-font-sans);
+  --nt-text-body-xs: var(--nt-font-weight-regular) var(--nt-font-size-body-xs) / var(--nt-line-height-body-xs) var(--nt-font-sans);
+
+  --nt-text-label-lg: var(--nt-font-weight-medium) var(--nt-font-size-label-lg) / var(--nt-line-height-label) var(--nt-font-sans);
+  --nt-text-label-md: var(--nt-font-weight-medium) var(--nt-font-size-label-md) / var(--nt-line-height-label) var(--nt-font-sans);
+  --nt-text-label-sm: var(--nt-font-weight-medium) var(--nt-font-size-label-sm) / var(--nt-line-height-label) var(--nt-font-sans);
+  --nt-text-label-xs: var(--nt-font-weight-medium) var(--nt-font-size-micro) / var(--nt-line-height-label) var(--nt-font-sans);
+
+  --nt-text-caption: var(--nt-font-weight-regular) var(--nt-font-size-caption) / var(--nt-line-height-caption) var(--nt-font-sans);
+  --nt-text-mono-sm: var(--nt-font-weight-regular) var(--nt-font-size-body-sm) / var(--nt-line-height-body-sm) var(--nt-font-mono);
+}
+
+/* --- elevation.css --- */
+:root {
+  --nt-shadow-none: none;
+
+  --nt-shadow-xs:
+    0 1px 2px rgba(0, 0, 0, 0.18);
+
+  --nt-shadow-sm:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 4px 10px rgba(0, 0, 0, 0.12);
+
+  --nt-shadow-md:
+    0 8px 24px rgba(0, 0, 0, 0.18);
+
+  --nt-shadow-lg:
+    0 16px 40px rgba(0, 0, 0, 0.24);
+
+  --nt-shadow-xl:
+    0 24px 64px rgba(0, 0, 0, 0.32);
+
+  --nt-shadow-overlay:
+    0 28px 80px rgba(0, 0, 0, 0.42);
+
+  --nt-elevation-border-subtle: 1px solid var(--nt-border-subtle);
+  --nt-elevation-border-strong: 1px solid var(--nt-border-strong);
+
+}
+
+/* --- motion.css --- */
+:root {
+  --nt-duration-instant: 0ms;
+  --nt-duration-fast: 120ms;
+  --nt-duration-normal: 180ms;
+  --nt-duration-slow: 260ms;
+  --nt-duration-slower: 420ms;
+
+  --nt-ease-linear: linear;
+  --nt-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --nt-ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --nt-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --nt-ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  --nt-transition-colors:
+    background-color var(--nt-duration-fast) var(--nt-ease-standard),
+    border-color var(--nt-duration-fast) var(--nt-ease-standard),
+    color var(--nt-duration-fast) var(--nt-ease-standard),
+    box-shadow var(--nt-duration-fast) var(--nt-ease-standard);
+
+  --nt-transition-transform:
+    transform var(--nt-duration-normal) var(--nt-ease-standard);
+
+  --nt-transition-opacity:
+    opacity var(--nt-duration-normal) var(--nt-ease-standard);
+
+  --nt-transition-overlay:
+    opacity var(--nt-duration-normal) var(--nt-ease-standard),
+    transform var(--nt-duration-normal) var(--nt-ease-standard);
+
+  --nt-motion-button: var(--nt-transition-colors), var(--nt-transition-transform);
+  --nt-motion-card: var(--nt-transition-colors), var(--nt-transition-transform);
+  --nt-motion-dialog: var(--nt-transition-overlay);
+  --nt-motion-drawer: var(--nt-transition-overlay);
+  --nt-motion-menu: var(--nt-transition-overlay);
+  --nt-motion-toast: var(--nt-transition-overlay);
+}
+
+/* --- z-index.css --- */
+:root {
+  --nt-z-base: 0;
+  --nt-z-raised: 10;
+  --nt-z-sticky: 100;
+  --nt-z-header: 200;
+  --nt-z-sidebar: 300;
+  --nt-z-dropdown: 400;
+  --nt-z-popover: 500;
+  --nt-z-tooltip: 600;
+  --nt-z-drawer: 700;
+  --nt-z-modal: 800;
+  --nt-z-toast: 900;
+  --nt-z-command-palette: 1000;
+  --nt-z-max: 2147483647;
+}
+
+/* --- breakpoints.css --- */
+/*
+ * Responsive scale contract.
+ *
+ * Native media and container queries cannot read custom properties, so these
+ * tokens are the *documentation and JS contract* for the scale — the literal
+ * rem values below are the only widths production queries may use. The list
+ * is enforced by `npm run check:responsive` and mirrored by
+ * `NT_VIEWPORTS` in `@neetechs/ui/behaviors`.
+ *
+ * Viewport ranges (content-driven, never device-brand):
+ *   small phone   <  30rem (480px)
+ *   large phone   30–40rem (480–640px)
+ *   tablet        40–48rem (640–768px)
+ *   small desktop 48–64rem (768–1024px)
+ *   desktop       64–80rem (1024–1280px)
+ *   wide desktop  >= 80rem (1280px)
+ *
+ * Reusable components respond to their *container* (see
+ * `src/styles/responsive.css`); only app-shell-level layout may use
+ * viewport queries.
+ */
+:root {
+  --nt-breakpoint-xs: 30rem;   /* 480px  — small phone upper bound */
+  --nt-breakpoint-sm: 40rem;   /* 640px  — large phone upper bound */
+  --nt-breakpoint-md: 48rem;   /* 768px  — tablet upper bound */
+  --nt-breakpoint-lg: 64rem;   /* 1024px — shell collapses sidebar below this */
+  --nt-breakpoint-xl: 80rem;   /* 1280px — wide desktop lower bound */
+  --nt-breakpoint-2xl: 96rem;  /* 1536px — maximum content rationale */
+
+  /* Reading/content max-width scale consumed by .nt-container and content-frame. */
+  --nt-container-xs: 100%;
+  --nt-container-sm: 40rem;
+  --nt-container-md: 48rem;
+  --nt-container-lg: 64rem;
+  --nt-container-xl: 80rem;
+  --nt-container-2xl: 90rem;
+}
+
+/* --- compatibility.css --- */
+/*
+ * Deprecated compatibility aliases retained for existing consumers.
+ * Internal source must use the canonical targets directly. Remove only in
+ * the next major version after the migration documented in
+ * docs/design-token-contract.md.
+ */
+:root {
+  --nt-bg-muted: var(--nt-bg-surface-muted);
+  --nt-bg-elevated: var(--nt-bg-surface-raised);
+  --nt-bg-overlay: var(--nt-bg-backdrop);
+  --nt-bg-overlay-subtle: var(--nt-bg-backdrop);
+  --nt-disabled-bg: var(--nt-bg-surface-disabled);
+  --nt-disabled-border: var(--nt-border-disabled);
+  --nt-disabled-text: var(--nt-text-disabled);
+  --nt-ai-accent: var(--nt-ai-fg);
+  --nt-ai-accent-hover: var(--nt-ai-action-hover);
+  --nt-ai-bg-raised: var(--nt-ai-generated-surface);
+  --nt-ai-glow: var(--nt-ai-processing);
+  --nt-accent-bg: var(--nt-accent-subtle);
+  --nt-accent-border: var(--nt-border-interactive);
+  --nt-line-height-relaxed: var(--nt-line-height-body-lg);
+  --nt-line-height-snug: var(--nt-line-height-label);
+  --nt-shadow-2xl: var(--nt-elevation-overlay);
+  --nt-shadow-card: var(--nt-elevation-card);
+  --nt-shadow-card-hover: var(--nt-elevation-card-hover);
+  --nt-shadow-dialog: var(--nt-elevation-dialog);
+  --nt-shadow-drawer: var(--nt-elevation-drawer);
+  --nt-shadow-dropdown: var(--nt-elevation-popover);
+  --nt-shadow-toast: var(--nt-elevation-toast);
+  --nt-selection-text: var(--nt-selection-fg);
+  --nt-text-code-sm: var(--nt-text-mono-sm);
+  --nt-z-overlay: var(--nt-z-raised);
+}
