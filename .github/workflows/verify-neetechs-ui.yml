@@ -22,20 +22,6 @@ jobs:
           cache: npm
       - name: Install UI asset dependencies
         run: npm ci --no-audit --no-fund
-      - name: Generate CSS assets from the actual npm release
-        run: npm run ui:sync
-      - name: Capture generated CSS for source-controlled parity
-        run: |
-          node - <<'NODE'
-          const fs = require('fs');
-          const css = fs.readFileSync('Neetechs_MVC/wwwroot/vendor/neetechs-ui/tokens.css','utf8');
-          console.log('NT_TOKEN_CAPTURE_BEGIN');
-          let count = 0;
-          for (let i = 0; i < css.length; i += 800) {
-            console.log('NT_TOKEN_CAPTURE_PART', count++, JSON.stringify(css.slice(i, i + 800)));
-          }
-          console.log('NT_TOKEN_CAPTURE_END', count, css.length);
-          NODE
       - name: Confirm compiled static tokens match npm package
         run: npm run ui:verify
       - name: Verify Razor layout references the bundled CSS
