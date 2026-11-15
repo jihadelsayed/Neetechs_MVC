@@ -1,0 +1,13 @@
+{
+  "name": "neetechs-mvc-ui-assets",
+  "private": true,
+  "version": "0.1.0",
+  "description": "npm-managed design tokens for the legacy ASP.NET MVC frontend",
+  "scripts": {
+    "ui:sync": "node scripts/sync-neetechs-ui-tokens.mjs",
+    "ui:verify": "node scripts/sync-neetechs-ui-tokens.mjs --check"
+  },
+  "dependencies": {
+    "@neetechs/ui": "0.2.0"
+  }
+}

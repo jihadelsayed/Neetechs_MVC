@@ -1,0 +1,33 @@
+name: Verify Neetechs UI static assets in MVC
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "package.json"
+      - "package-lock.json"
+      - "scripts/sync-neetechs-ui-tokens.mjs"
+      - "Neetechs_MVC/wwwroot/vendor/neetechs-ui/**"
+      - "Neetechs_MVC/Views/Shared/_Layout.cshtml"
+      - ".github/workflows/verify-neetechs-ui.yml"
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install UI asset dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Confirm compiled static tokens match npm package
+        run: npm run ui:verify
+      - name: Verify Razor layout references the bundled CSS
+        run: node -e "const f=require('fs'); if(!f.readFileSync('Neetechs_MVC/Views/Shared/_Layout.cshtml','utf8').includes('vendor/neetechs-ui/tokens.css'))process.exit(1)"
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "6.0.x"
+      - name: Compile ASP.NET MVC without deploying
+        run: dotnet build -c Release
